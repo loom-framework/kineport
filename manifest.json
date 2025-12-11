@@ -1,7 +1,7 @@
 {
   "name": "My W3C App",
   "short_name": "W3CApp",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0059ff",
