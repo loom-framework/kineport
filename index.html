@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta
+            name="description"
+            content="W3C compliant demo app with PWA, accessibility, dark mode and responsive layouts" />
+        <title>My W3C App — Demo</title>
+
+        <link rel="manifest" href="manifest.json" />
+        <meta name="theme-color" content="#0059ff" />
+
+        <link rel="stylesheet" href="css/variables.css" />
+        <link rel="stylesheet" href="css/base.css" />
+        <link rel="stylesheet" href="css/typography.css" />
+        <link rel="stylesheet" href="css/layout.css" />
+        <link rel="stylesheet" href="css/components.css" />
+        <link rel="stylesheet" href="css/themes.css" />
+    </head>
+    <body>
+        <!-- header + nav -->
+        <!-- Use server-side include, build tool, or copy HTML into index.html if server doesn't support <include> -->
+        <div id="component-header"></div>
+        <div id="component-nav"></div>
+
+        <main id="main" role="main" class="container">
+            <section id="hero" class="hero">
+                <h1>W3C-Compliant Demo App</h1>
+                <p class="lead">Semantic HTML, accessibility, PWA-ready, dark mode, and responsive layouts.</p>
+                <p><a class="btn" href="#features">Explore features</a></p>
+            </section>
+
+            <section id="features" aria-labelledby="features-title">
+                <h2 id="features-title">Layout Patterns</h2>
+
+                <article aria-labelledby="single-col-title">
+                    <h3 id="single-col-title">Single Column</h3>
+                    <p>Great for articles and blog posts — fully responsive and accessible.</p>
+                </article>
+
+                <article aria-labelledby="two-col-title">
+                    <h3 id="two-col-title">Two Column</h3>
+                    <div class="grid-2">
+                        <section>
+                            <h4>Column A</h4>
+                            <p>Left column content.</p>
+                        </section>
+                        <section>
+                            <h4>Column B</h4>
+                            <p>Right column content.</p>
+                        </section>
+                    </div>
+                </article>
+
+                <article aria-labelledby="three-col-title">
+                    <h3 id="three-col-title">Three Column</h3>
+                    <div class="grid-3 demo-boxes" role="list">
+                        <div role="listitem">Box 1</div>
+                        <div role="listitem">Box 2</div>
+                        <div role="listitem">Box 3</div>
+                    </div>
+                </article>
+
+                <article aria-labelledby="sidebar-title">
+                    <h3 id="sidebar-title">Sidebar Layout</h3>
+                    <div class="layout-sidebar">
+                        <aside aria-label="Sidebar" class="sidebar">Sidebar content</aside>
+                        <article class="content">Main article content</article>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <div id="component-footer"></div>
+
+        <script type="module" src="js/storage.js"></script>
+        <script type="module" src="js/ui.js"></script>
+        <script type="module" src="js/offline.js"></script>
+        <script type="module" src="js/install.js"></script>
+        <script type="module" src="js/main.js"></script>
+
+        <script>
+            // Simple client-side include loader for components (works without server includes)
+            async function loadComponent(id, path) {
+                const res = await fetch(path);
+                if (res.ok) {
+                    document.getElementById(id).innerHTML = await res.text();
+                }
+            }
+            loadComponent("component-header", "components/header.html");
+            loadComponent("component-nav", "components/nav.html");
+            loadComponent("component-footer", "components/footer.html");
+
+            // Register service worker
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker
+                        .register("service-worker.js")
+                        .then((reg) => console.log("SW registered", reg))
+                        .catch((err) => console.warn("SW fail", err));
+                });
+            }
+        </script>
+    </body>
+</html>

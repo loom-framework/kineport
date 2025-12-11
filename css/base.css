@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: var(--font-base);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+.container {
+    width: min(1200px, 94%);
+    margin: 0 auto;
+    padding: var(--spacing) 0;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+a {
+    color: var(--color-primary);
+}
+button {
+    font: inherit;
+}
+:focus {
+    outline: 3px solid color-mix(in srgb, var(--color-primary) 60%, transparent);
+    outline-offset: 3px;
+}

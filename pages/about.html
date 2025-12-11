@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About — My W3C App</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/typography.css">
+</head>
+<body>
+  <div id="component-header"></div>
+  <div id="component-nav"></div>
+  <main class="container">
+    <h1>About</h1>
+    <p>This demo illustrates W3C standards and best practices.</p>
+  </main>
+  <div id="component-footer"></div>
+  <script>fetch('/components/header.html').then(r=>r.text()).then(t=>document.getElementById('component-header').innerHTML=t);fetch('/components/nav.html').then(r=>r.text()).then(t=>document.getElementById('component-nav').innerHTML=t);fetch('/components/footer.html').then(r=>r.text()).then(t=>document.getElementById('component-footer').innerHTML=t);</script>
+</body>
+</html>

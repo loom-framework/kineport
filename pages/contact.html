@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — My W3C App</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/typography.css">
+</head>
+<body>
+  <div id="component-header"></div>
+  <div id="component-nav"></div>
+  <main class="container">
+    <h1>Contact</h1>
+    <form id="contact-form" method="post" action="#" novalidate>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required>
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+  </main>
+  <div id="component-footer"></div>
+  <script type="module">
+    import { save } from '/js/storage.js';
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = { name: e.target.name.value, email: e.target.email.value, message: e.target.message.value };
+      save('contact', data);
+      alert('Message saved locally.');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

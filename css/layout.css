@@ -1,0 +1,46 @@
+/* responsive columns */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+}
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+}
+.layout-sidebar {
+    display: block;
+}
+
+@media (min-width: 700px) {
+    .grid-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 1000px) {
+    .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .layout-sidebar {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: var(--spacing);
+    }
+}
+
+.hero {
+    padding: var(--spacing);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent);
+    border-radius: var(--radius);
+}
+.demo-boxes > div {
+    background: var(--color-surface);
+    padding: var(--spacing);
+    border-radius: var(--radius);
+}
+.sidebar {
+    background: color-mix(in srgb, var(--color-surface) 92%, black);
+    padding: var(--spacing);
+    border-radius: var(--radius);
+}
