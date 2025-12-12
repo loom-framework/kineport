@@ -41,7 +41,7 @@ self.addEventListener("fetch", (event) => {
                     caches.open(CACHE_NAME).then((c) => c.put(req, copy));
                     return res;
                 })
-                .catch(() => caches.match("/offline.html"))
+                .catch(() => caches.match("/offline"))
         );
         return;
     }
@@ -57,7 +57,7 @@ self.addEventListener("fetch", (event) => {
                             caches.open(CACHE_NAME).then((c) => c.put(req, copy));
                             return res;
                         })
-                        .catch(() => caches.match("/offline.html"))
+                        .catch(() => caches.match("/offline"))
             )
         );
     }
