@@ -8,15 +8,15 @@
             content="W3C compliant demo app with PWA, accessibility, dark mode and responsive layouts" />
         <title>My W3C App — Demo </title>
 
-        <link rel="manifest" href="manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0059ff" />
 
-        <link rel="stylesheet" href="css/variables.css" />
-        <link rel="stylesheet" href="css/base.css" />
-        <link rel="stylesheet" href="css/typography.css" />
-        <link rel="stylesheet" href="css/layout.css" />
-        <link rel="stylesheet" href="css/components.css" />
-        <link rel="stylesheet" href="css/themes.css" />
+        <link rel="stylesheet" href="/css/variables.css" />
+        <link rel="stylesheet" href="/css/base.css" />
+        <link rel="stylesheet" href="/css/typography.css" />
+        <link rel="stylesheet" href="/css/layout.css" />
+        <link rel="stylesheet" href="/css/components.css" />
+        <link rel="stylesheet" href="/css/themes.css" />
     </head>
     <body>
         <!-- header + nav -->
@@ -74,11 +74,11 @@
 
         <div id="component-footer"></div>
 
-        <script type="module" src="js/storage.js"></script>
-        <script type="module" src="js/ui.js"></script>
-        <script type="module" src="js/offline.js"></script>
-        <script type="module" src="js/install.js"></script>
-        <script type="module" src="js/main.js"></script>
+        <script type="module" src="/js/storage.js"></script>
+        <script type="module" src="/js/ui.js"></script>
+        <script type="module" src="/js/offline.js"></script>
+        <script type="module" src="/js/install.js"></script>
+        <script type="module" src="/js/main.js"></script>
 
         <script>
             // Simple client-side include loader for components (works without server includes)
@@ -88,15 +88,15 @@
                     document.getElementById(id).innerHTML = await res.text();
                 }
             }
-            loadComponent("component-header", "components/header.html");
-            loadComponent("component-nav", "components/nav.html");
-            loadComponent("component-footer", "components/footer.html");
+            loadComponent("component-header", "/components/header.html");
+            loadComponent("component-nav", "/components/nav.html");
+            loadComponent("component-footer", "/components/footer.html");
 
             // Register service worker
             if ("serviceWorker" in navigator) {
                 window.addEventListener("load", () => {
                     navigator.serviceWorker
-                        .register("service-worker.js")
+                        .register("/service-worker.js")
                         .then((reg) => console.log("SW registered", reg))
                         .catch((err) => console.warn("SW fail", err));
                 });
