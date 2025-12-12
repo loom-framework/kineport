@@ -1,24 +1,24 @@
 const CACHE_NAME = "my-w3c-app-cache-v1";
 const PRECACHE_URLS = [
     "/",
-    "index.html",
-    "about.html",
-    "contact.html",
-    "offline.html",
-    "css/variables.css",
-    "css/base.css",
-    "css/typography.css",
-    "css/layout.css",
-    "css/components.css",
-    "css/themes.css",
-    "js/main.js",
-    "js/ui.js",
-    "js/storage.js",
-    "js/offline.js",
-    "js/install.js",
-    "components/header.html",
-    "components/nav.html",
-    "components/footer.html"
+    "/index.html",
+    "/about",
+    "/contact.html",
+    "/offline.html",
+    "/css/variables.css",
+    "/css/base.css",
+    "/css/typography.css",
+    "/css/layout.css",
+    "/css/components.css",
+    "/css/themes.css",
+    "/js/main.js",
+    "/js/ui.js",
+    "/js/storage.js",
+    "/js/offline.js",
+    "/js/install.js",
+    "/components/header.html",
+    "/components/nav.html",
+    "/components/footer.html"
 ];
 
 self.addEventListener("install", (event) => {
@@ -41,7 +41,7 @@ self.addEventListener("fetch", (event) => {
                     caches.open(CACHE_NAME).then((c) => c.put(req, copy));
                     return res;
                 })
-                .catch(() => caches.match("offline.html"))
+                .catch(() => caches.match("/offline.html"))
         );
         return;
     }
@@ -57,7 +57,7 @@ self.addEventListener("fetch", (event) => {
                             caches.open(CACHE_NAME).then((c) => c.put(req, copy));
                             return res;
                         })
-                        .catch(() => caches.match("offline.html"))
+                        .catch(() => caches.match("/offline.html"))
             )
         );
     }
