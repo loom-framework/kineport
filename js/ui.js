@@ -1,27 +1,28 @@
-// UI: theme toggle, nav toggle, enhanced accessibility
-const themeBtn = document?.getElementById('theme-toggle') || document.querySelector('#component-header button#theme-toggle');
-if(themeBtn){
-  themeBtn.addEventListener('click', ()=>{
-    const cur = document.documentElement.getAttribute('data-theme')||'light';
-    const next = cur==='dark'?'light':'dark';
-    document.documentElement.setAttribute('data-theme',next);
-    try{localStorage.setItem('theme',next)}catch(e){}
-    themeBtn.setAttribute('aria-pressed', next==='dark');
-  });
-}
-// restore saved theme
-try{const t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}
+/* ui.js — global UI interactions (component-safe) */
 
-// nav toggle behavior
-const menuBtn = document?.getElementById('menu-toggle') || document.querySelector('#component-header button#menu-toggle');
-const nav = document.getElementById('nav-menu') || document.querySelector('.site-nav');
-if(menuBtn && nav){
-  menuBtn.addEventListener('click', ()=>{
-    const expanded = menuBtn.getAttribute('aria-expanded')==='true';
-    menuBtn.setAttribute('aria-expanded', String(!expanded));
-    nav.classList.toggle('open');
-  });
-}
+// Restore theme on load
+(function restoreTheme() {
+    try {
+        const theme = localStorage.getItem('theme');
+        if (theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+    } catch (e) {}
+})();
 
-// keyboard: close nav with Escape
-document.addEventListener('keydown',(e)=>{if(e.key==='Escape'){nav?.classList.remove('open');menuBtn?.setAttribute('aria-expanded','false');}});
+document.addEventListener('click', function (e) {
+
+    /* ======================
+       THEME TOGGLE
+    ====================== */
+    if (e.target?.id === 'theme-toggle') {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', next);
+        e.target.setAttribute('aria-pressed', next === 'dark');
+
+        try { localStorage.setItem('theme', next); } catch (e) {}
+    }
+
+});
