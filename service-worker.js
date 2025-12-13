@@ -11,6 +11,7 @@ const PRECACHE_URLS = [
     "/css/layout.css",
     "/css/components.css",
     "/css/themes.css",
+    "/js/loader.js",
     "/js/main.js",
     "/js/ui.js",
     "/js/storage.js",

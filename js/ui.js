@@ -10,7 +10,6 @@
     } catch (e) {}
 })();
 
-// Event delegation (works with injected header/nav)
 document.addEventListener('click', function (e) {
 
     /* ======================
