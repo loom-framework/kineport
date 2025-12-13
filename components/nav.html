@@ -1,7 +1,21 @@
-<nav id="nav-menu" role="navigation" class="site-nav" aria-label="Primary">
+<div id="overlay" class="overlay" hidden></div>
+
+<nav
+  id="mobileMenu"
+  class="drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="menuTitle"
+  hidden>
+
+  <h2 id="menuTitle" class="visually-hidden">Main menu</h2>
+
+  <button class="close-btn" id="closeBtn" aria-label="Close menu">✕</button>
+
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contact</a></li>
   </ul>
 </nav>

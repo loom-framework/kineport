@@ -62,3 +62,129 @@
         transform: translateY(0);
     }
 }
+
+/* ===== Sticky Header ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.menu-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== Desktop Nav ===== */
+.desktop-nav {
+  display: none;
+}
+
+.desktop-nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: #222;
+  font-size: 16px;
+}
+
+/* ===== Overlay ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+/* ===== Mobile Drawer ===== */
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: #fff;
+  padding: 16px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer ul {
+  list-style: none;
+  margin-top: 32px;
+}
+
+.drawer li {
+  margin-bottom: 16px;
+}
+
+.drawer a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #222;
+}
+
+.close-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== Desktop breakpoint ===== */
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none;
+  }
+
+  .desktop-nav {
+    display: flex;
+  }
+
+  .overlay,
+  .drawer {
+    display: none !important;
+  }
+}
+
+/* ===== Accessibility ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer {
+    transition: none;
+  }
+}
+
+
+
+

@@ -1,8 +1,21 @@
 <header role="banner" class="site-header">
-  <div class="container flex between center">
-    <a class="logo" href="/">MyW3CApp</a>
-    <div class="controls">
-      <button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">Toggle theme</button>
-    </div>
+  <div class="left">
+    <button
+      id="menuBtn"
+      class="menu-btn"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu">
+      ☰
+    </button>
+    <span class="title">My Website</span>
   </div>
+
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+    <button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">Toggle theme</button>
+  </nav>
 </header>
