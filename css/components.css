@@ -47,9 +47,7 @@
 .site-nav {
     transition: transform 0.2s ease;
 }
-.site-nav.open {
-    transform: none;
-}
+
 @media (max-width: 699px) {
     .site-nav {
         transform: translateY(-100%);
@@ -58,5 +56,9 @@
         right: 0;
         background: var(--color-surface);
         padding: var(--spacing);
+    }
+
+    .site-nav.open {
+        transform: translateY(0);
     }
 }

@@ -73,14 +73,14 @@
         </main>
 
         <div id="component-footer"></div>
-
+        <script src="/js/loader.js" defer></script>
         <script type="module" src="/js/storage.js"></script>
         <script type="module" src="/js/ui.js"></script>
         <script type="module" src="/js/offline.js"></script>
         <script type="module" src="/js/install.js"></script>
         <script type="module" src="/js/main.js"></script>
 
-        <script>
+       <!--  <script>
             // Simple client-side include loader for components (works without server includes)
             async function loadComponent(id, path) {
                 const res = await fetch(path);
@@ -101,6 +101,8 @@
                         .catch((err) => console.warn("SW fail", err));
                 });
             }
-        </script>
+        </script>//-->
+        
+         
     </body>
 </html>

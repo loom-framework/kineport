@@ -1,0 +1,31 @@
+(async function () {
+
+  async function loadComponent(id, path) {
+    try {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const res = await fetch(path, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`${path} ${res.status}`);
+      el.innerHTML = await res.text();
+    } catch (err) {
+      console.error('Failed to load component:', path, err);
+    }
+  }
+
+  await Promise.all([
+    loadComponent('component-header', '/components/header.html'),
+    loadComponent('component-nav', '/components/nav.html'),
+    loadComponent('component-footer', '/components/footer.html')
+  ]);
+
+  if ('serviceWorker' in navigator) {
+    try {
+      const reg = await navigator.serviceWorker.register('/service-worker.js');
+      console.log('SW registered:', reg.scope);
+    } catch (err) {
+      console.warn('SW registration failed:', err);
+    }
+  }
+
+})();
