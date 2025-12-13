@@ -1,0 +1,16 @@
+./run-local-https.sh
+
+Result: A Real, Trusted HTTPS Local Host
+You now have:
+
+✔ Fully trusted HTTPS (https://localhost:8443)
+✔ No browser warnings
+✔ PWA install prompt fully works
+✔ Service worker offline tests
+✔ Background sync
+✔ Push subscription (if using mock server)
+✔ Geolocation secure
+✔ PaymentRequest API
+✔ Secure cookies
+
+Exactly like production.
