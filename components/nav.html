@@ -1,16 +1,15 @@
-<div id="overlay" class="overlay" hidden></div>
+<!-- Mobile menu toggle -->
+<input type="checkbox" id="menuToggle" />
 
+<!-- Overlay -->
+<label for="menuToggle" class="menu-overlay" aria-hidden="true"></label>
+
+<!-- Mobile drawer -->
 <nav
-  id="mobileMenu"
-  class="drawer"
+  class="mobile-drawer"
   role="dialog"
   aria-modal="true"
-  aria-labelledby="menuTitle"
-  hidden>
-
-  <h2 id="menuTitle" class="visually-hidden">Main menu</h2>
-
-  <button class="close-btn" id="closeBtn" aria-label="Close menu">✕</button>
+  aria-label="Mobile menu">
 
   <ul>
     <li><a href="#">Home</a></li>
