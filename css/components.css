@@ -115,6 +115,7 @@ body {
   background: #fff;
   padding: 16px;
   transition: opacity 0.25s ease,transform 0.25s ease;
+  transition: transform 0.25s ease;
   z-index: 1001;
 }
 
