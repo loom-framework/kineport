@@ -108,10 +108,10 @@ body {
    ========================= */
 .mobile-drawer {
   position: fixed;
-  top: var(--header-height);
+  top: 0px;
   left: calc(var(--drawer-width) * -1);
   width: var(--drawer-width);
-  height: calc(100% - var(--header-height));
+  height: 100%;
   background: #fff;
   padding: 16px;
   transition: left 0.3s ease;
