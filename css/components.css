@@ -88,11 +88,11 @@ body {
 }
 
 /* =========================
-   Overlay (below header)
+   Overlay
    ========================= */
 .menu-overlay {
   position: fixed;
-  top: var(--header-height);
+  top: 0px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -104,7 +104,7 @@ body {
 }
 
 /* =========================
-   Mobile Drawer (below header)
+   Mobile Drawer
    ========================= */
 .mobile-drawer {
   position: fixed;
