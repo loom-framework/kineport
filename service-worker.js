@@ -5,6 +5,7 @@ const PRECACHE_URLS = [
     "/about",
     "/contact",
     "/offline",
+    "/debug",
     "/css/variables.css",
     "/css/base.css",
     "/css/typography.css",
