@@ -1,25 +1,4 @@
-.site-header {
-    background: var(--color-surface);
-    padding: var(--spacing);
-    border-bottom: 1px solid color-mix(in srgb, var(--color-surface) 80%, black);
-}
-.site-footer {
-    background: transparent;
-    padding: var(--spacing);
-    border-top: 1px solid color-mix(in srgb, var(--color-surface) 80%, black);
-}
-.site-nav ul {
-    display: flex;
-    gap: calc(var(--spacing) / 2);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.site-nav a {
-    display: inline-block;
-    padding: 0.4rem 0.6rem;
-    border-radius: 6px;
-}
+
 .btn {
     display: inline-block;
     padding: 0.6rem 0.9rem;
@@ -28,37 +7,174 @@
     color: white;
     text-decoration: none;
 }
-.controls {
+
+/* =========================
+   Global variables
+   ========================= */
+:root {
+  --header-height: 56px;
+  --drawer-width: 280px;
+}
+
+/* =========================
+   Reset
+   ========================= */
+
+
+/* =========================
+   Body offset for fixed header
+   ========================= */
+body {
+  padding-top: var(--header-height);
+}
+
+/* =========================
+   Fixed Header (ALWAYS on top)
+   ========================= */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+/* =========================
+   Header content
+   ========================= */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.menu-btn {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* =========================
+   Desktop Navigation
+   ========================= */
+.desktop-nav {
+  display: none;
+}
+
+.desktop-nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: #222;
+  font-size: 16px;
+}
+
+/* =========================
+   Mobile Toggle
+   ========================= */
+#menuToggle {
+  display: none;
+}
+
+/* =========================
+   Overlay
+   ========================= */
+.menu-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+/* =========================
+   Mobile Drawer
+   ========================= */
+.mobile-drawer {
+  position: fixed;
+  top: 0px;
+  left: calc(var(--drawer-width) * -1);
+  width: var(--drawer-width);
+  height: 100%;
+  background: #fff;
+  padding: 16px;
+  transition: opacity 0.25s ease,transform 0.25s ease;
+  transition: transform 0.25s ease;
+  z-index: 1001;
+}
+
+.mobile-drawer ul {
+  list-style: none;
+  margin-top: 32px;
+}
+
+.mobile-drawer li {
+  margin-bottom: 16px;
+}
+
+.mobile-drawer a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #222;
+}
+
+/* =========================
+   Toggle States (CSS-only)
+   ========================= */
+#menuToggle:checked ~ .menu-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#menuToggle:checked ~ .mobile-drawer {
+  left: 0;
+}
+
+/* =========================
+   Desktop Breakpoint
+   ========================= */
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none;
+  }
+
+  .desktop-nav {
     display: flex;
-    gap: 0.5rem;
+  }
+
+  .menu-overlay,
+  .mobile-drawer {
+    display: none !important;
+  }
 }
 
-/* accessible hidden helper */
-.visually-hidden {
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap;
+/* =========================
+   Reduced Motion
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+  .menu-overlay,
+  .mobile-drawer {
+    transition: none;
+  }
 }
 
-/* nav open mobile */
-.site-nav {
-    transition: transform 0.2s ease;
-}
 
-@media (max-width: 699px) {
-    .site-nav {
-        transform: translateY(-100%);
-        position: absolute;
-        left: 0;
-        right: 0;
-        background: var(--color-surface);
-        padding: var(--spacing);
-    }
 
-    .site-nav.open {
-        transform: translateY(0);
-    }
-}
+
+

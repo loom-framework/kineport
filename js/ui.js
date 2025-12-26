@@ -26,3 +26,21 @@ document.addEventListener('click', function (e) {
     }
 
 });
+
+
+
+/* ======================
+       NAVBAR
+    ====================== */
+
+const toggle = document.getElementById("menuToggle");
+const button = document.querySelector(".menu-btn");
+
+if (toggle && button) {
+  toggle.addEventListener("change", () => {
+    button.setAttribute(
+      "aria-expanded",
+      toggle.checked ? "true" : "false"
+    );
+  });
+}
