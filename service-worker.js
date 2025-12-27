@@ -1,7 +1,6 @@
 const CACHE_NAME = "my-w3c-app-cache-v1";
 const PRECACHE_URLS = [
     "/",
-    "/index.html",
     "/about",
     "/contact",
     "/offline",

@@ -1,24 +1,33 @@
-.mobile-menu-layout-side .nm-mobile-menu-social-ul
-Specificity: (0,2,0)
- {
-    line-height: 1;
-    padding: 15px 0 30px;
-    border-top: 1px solid var(--nm--mobile-menu-color-border);
-}
-
-.mobile-menu-layout-side #nm-mobile-menu-secondary-ul
-Specificity: (1,1,0)
- {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 4px;
-    padding: 16px 0 24px;
-}
-
-.mobile-menu-layout-side #nm-mobile-menu .nm-mobile-menu-content>.nm-row
-Specificity: (1,3,0)
- {
+.mobile-drawer {
+    position: fixed;
+    left: 0;
+    top: 0;
     display: flex;
+    left: calc(var(--drawer-width) * -1);
     flex-direction: column;
+    width:  var(--drawer-width);
+    max-width: 410px;
+    height: 100%;
+    background: #fff;
+    transition: transform 0.25s ease;
+    z-index: 1001;
+}
+
+.menu-overlay {
+    position: fixed;
+    visibility: visible;
+    pointer-events: all;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(51, 51, 51, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1001;
+    width: 100%;
     height: 100%;
 }
+
+

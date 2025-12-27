@@ -13,7 +13,7 @@
    ========================= */
 :root {
   --header-height: 56px;
-  --drawer-width: 280px;
+  --drawer-width: calc(100% - 20% );
 }
 
 /* =========================
@@ -90,34 +90,34 @@ body {
 /* =========================
    Overlay
    ========================= */
-.menu-overlay {
+/*.menu-overlay {
   position: fixed;
   top: 0px;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(51, 51, 51, 0.6);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 1000;
-}
+}*/
 
 /* =========================
    Mobile Drawer
    ========================= */
-.mobile-drawer {
+/*.mobile-drawer {
   position: fixed;
   top: 0px;
   left: calc(var(--drawer-width) * -1);
-  width: var(--drawer-width);
+  width: calc(100% - 20px);
+  max-width: 410px;
   height: 100%;
   background: #fff;
   padding: 16px;
   transition: opacity 0.25s ease,transform 0.25s ease;
-  transition: transform 0.25s ease;
   z-index: 1001;
-}
+}*/
 
 .mobile-drawer ul {
   list-style: none;
@@ -150,18 +150,18 @@ body {
    Desktop Breakpoint
    ========================= */
 @media (min-width: 768px) {
-  .menu-btn {
+  /*.menu-btn {
     display: none;
-  }
+  }*/
 
   .desktop-nav {
     display: flex;
   }
 
-  .menu-overlay,
+ /* .menu-overlay,
   .mobile-drawer {
     display: none !important;
-  }
+  }*/
 }
 
 /* =========================
