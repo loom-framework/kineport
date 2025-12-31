@@ -4,7 +4,7 @@
   "id": "/index.html",
   "start_url": "/",
  "display_override": ["standalone", "minimal-ui"],
- "display": "standalone"
+ "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0059ff",
   "icons": [
