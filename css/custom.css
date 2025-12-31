@@ -44,17 +44,6 @@
 }
 
 
-/*.drawer-header-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}*/
-
-
- /*.drawer-close {
-    display: flex;
-  }*/
-
 .drawer-footer {
     position: absolute;
     bottom: 0;
