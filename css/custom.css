@@ -68,10 +68,17 @@
 
 
 .site-footer {
-    background: red;
-    bottom: 0;
     position: relative;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: red;
+    border-top: 1px solid #ddd;
 }
 
 
