@@ -66,6 +66,31 @@
     gap: 1px;
 }
 
+
+.site-footer {
+    background: red;
+    bottom: 0;
+    position: relative;
+    width: 100%;
+}
+
+
+.site-info {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+
+
+
+/*  Print giberish     */
 @page {
     size: A4 portrait;
     margin: 1.5cm;
