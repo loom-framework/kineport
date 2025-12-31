@@ -4,7 +4,7 @@
     display: flex;
     left: calc(var(--drawer-width) * -1);
     flex-direction: column;
-    width:  var(--drawer-width);
+    width: var(--drawer-width);
     max-width: 410px;
     height: 100%;
     background: #fff;
@@ -43,7 +43,6 @@
     border-bottom: 1px solid #ddd;
 }
 
-
 .drawer-footer {
     position: absolute;
     bottom: 0;
@@ -67,10 +66,54 @@
     gap: 1px;
 }
 
+@page {
+    size: A4 portrait;
+    margin: 1.5cm;
+}
 
+@media print {
 
+    /* Preserve colors */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
 
+    /* Hide UI elements */
+    .menu-overlay,
+    .site-header,
+    .controls,
+    .mobile-drawer,
+    #menu-toggle,
+    #theme-toggle,
+    #print-page {
+        display: none !important;
+    }
 
+    /* Force desktop width */
+    html,
+    body,
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 
+    /* Force desktop breakpoints */
+    body {
+        background: white !important;
+    }
 
+    /* Optional: force desktop breakpoint */
+    html {
+        min-width: 700px !important;
+    }
+
+    /* Prevent content from splitting awkwardly */
+    * {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+}
 
