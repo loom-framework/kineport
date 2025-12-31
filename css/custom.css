@@ -71,15 +71,12 @@
 }
 
 .drawer-grid-2 {
+    position: absolute;
+    bottom: 56px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 1px;
 }
-
-@media (min-width: 450px) {
-    .drawer-grid-2 {
-        grid-template-columns: 1fr 1fr;
-    }
 
 
 
