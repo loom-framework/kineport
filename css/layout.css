@@ -9,6 +9,12 @@
     grid-template-columns: 1fr;
     gap: var(--spacing);
 }
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+}
 .layout-sidebar {
     display: block;
 }
@@ -18,9 +24,15 @@
         grid-template-columns: 1fr 1fr;
     }
 }
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
     .grid-3 {
         grid-template-columns: repeat(3, 1fr);
+    }
+    
+    
+@media (min-width: 700px) {
+    .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
     }
     .layout-sidebar {
         display: grid;
@@ -43,4 +55,5 @@
     background: color-mix(in srgb, var(--color-surface) 92%, black);
     padding: var(--spacing);
     border-radius: var(--radius);
+}
 }
