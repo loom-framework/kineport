@@ -15,5 +15,5 @@ window.addEventListener('beforeinstallprompt', (e)=>{
     deferredPrompt = null;
     btn.remove();
   });
-  document.querySelector('.hero')?.appendChild(btn);
+  document.querySelector('.drawer-footer')?.appendChild(btn);
 });

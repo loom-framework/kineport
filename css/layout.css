@@ -24,11 +24,13 @@
         grid-template-columns: 1fr 1fr;
     }
 }
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
     .grid-3 {
         grid-template-columns: repeat(3, 1fr);
     }
-@media (min-width: 1000px) {
+    
+    
+@media (min-width: 700px) {
     .grid-4 {
         grid-template-columns: repeat(4, 1fr);
     }
