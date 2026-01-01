@@ -1,7 +1,9 @@
-const CACHE_NAME = "my-w3c-app-cache-v1";
+// --- Versioning -------------------------------------------------------------
+const SW_VERSION = "v6"; // bump this for every release
+const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
+
 const PRECACHE_URLS = [
     "/",
-    "/index.html",
     "/about",
     "/contact",
     "/offline",
@@ -23,44 +25,57 @@ const PRECACHE_URLS = [
     "/components/footer.html"
 ];
 
+// --- Install ---------------------------------------------------------------
 self.addEventListener("install", (event) => {
-    self.skipWaiting();
-    event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)));
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+    );
 });
 
+// --- Activate: cleanup old caches -----------------------------------------
 self.addEventListener("activate", (event) => {
-    event.waitUntil(clients.claim());
+    event.waitUntil(
+        caches.keys().then((keys) =>
+            Promise.all(
+                keys
+                    .filter((key) => key !== CACHE_NAME)
+                    .map((key) => caches.delete(key))
+            )
+        ).then(() => self.clients.claim())
+    );
 });
 
+// --- Fetch -----------------------------------------------------------------
 self.addEventListener("fetch", (event) => {
     const req = event.request;
-    // network-first for navigation
+
+    // Navigation: network-first
     if (req.mode === "navigate") {
         event.respondWith(
-            fetch(req)
-                .then((res) => {
-                    const copy = res.clone();
-                    caches.open(CACHE_NAME).then((c) => c.put(req, copy));
-                    return res;
-                })
-                .catch(() => caches.match("/offline"))
+            fetch(req).catch(() => caches.match("/offline"))
         );
         return;
     }
-    // cache-first for other GET requests
+
+    // Other GET requests: cache-first
     if (req.method === "GET") {
         event.respondWith(
             caches.match(req).then(
                 (cached) =>
                     cached ||
-                    fetch(req)
-                        .then((res) => {
-                            const copy = res.clone();
-                            caches.open(CACHE_NAME).then((c) => c.put(req, copy));
-                            return res;
-                        })
-                        .catch(() => caches.match("/offline"))
+                    fetch(req).then((res) => {
+                        const copy = res.clone();
+                        caches.open(CACHE_NAME).then((c) => c.put(req, copy));
+                        return res;
+                    })
             )
         );
+    }
+});
+
+// --- Messaging: only skipWaiting for in-page update banner -----------------
+self.addEventListener("message", (event) => {
+    if (event.data && event.data.action === "skipWaiting") {
+        self.skipWaiting();
     }
 });
