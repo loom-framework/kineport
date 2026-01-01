@@ -1,5 +1,5 @@
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v4"; // bump this for every release
+const SW_VERSION = "v5"; // bump this for every release
 const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -52,8 +52,7 @@ self.addEventListener("fetch", (event) => {
     // Navigation: network-first
     if (req.mode === "navigate") {
         event.respondWith(
-            fetch(req)
-                .catch(() => caches.match("/offline"))
+            fetch(req).catch(() => caches.match("/offline"))
         );
         return;
     }
@@ -74,38 +73,9 @@ self.addEventListener("fetch", (event) => {
     }
 });
 
-// --- Messaging: show system notification -----------------------------------
+// --- Messaging: only skipWaiting for in-page update banner -----------------
 self.addEventListener("message", (event) => {
-    if (event.data && event.data.action === "notify-update") {
-        self.registration.showNotification("Update available", {
-            body: `A new version of the app is ready`,
-            icon: "/icons/icon-192.png",
-            badge: "/icons/badge.png",
-            tag: "app-update",
-            renotify: true
-        });
-    }
-
     if (event.data && event.data.action === "skipWaiting") {
         self.skipWaiting();
     }
-});
-
-// --- Notification click: activate new SW and refresh ------------------------
-self.addEventListener("notificationclick", (event) => {
-    event.notification.close();
-
-    // Activate new SW immediately
-    self.skipWaiting();
-
-    event.waitUntil(
-        self.clients.matchAll({ type: "window", includeUncontrolled: true })
-            .then((clientsArr) => {
-                if (clientsArr.length > 0) {
-                    const client = clientsArr[0];
-                    client.navigate(client.url);
-                    client.reload();
-                }
-            })
-    );
 });

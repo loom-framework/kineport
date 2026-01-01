@@ -17,13 +17,14 @@ window.addEventListener('beforeprint', () => {
     if (drawer) drawer.classList.remove('open');
 });
 
+// logic 
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js").then((reg) => {
 
         // If a new SW is already waiting
         if (reg.waiting) {
-            notifyUpdate();
+            showUpdateBanner();
         }
 
         // Detect new SW installation
@@ -31,22 +32,31 @@ if ("serviceWorker" in navigator) {
             const newSW = reg.installing;
             newSW.addEventListener("statechange", () => {
                 if (newSW.state === "installed" && navigator.serviceWorker.controller) {
-                    notifyUpdate();
+                    showUpdateBanner();
                 }
             });
         });
     });
 }
 
-// Ask SW to show system notification
-function notifyUpdate() {
-    navigator.serviceWorker.ready.then((reg) => {
-        reg.active.postMessage({ action: "notify-update" });
-    });
+// Show in-page update banner
+function showUpdateBanner() {
+    const banner = document.getElementById("update-banner");
+    banner.hidden = false;
+    banner.classList.add("update-banner--visible");
 }
 
-// When user taps notification → activate new SW
+// When user clicks "Update", activate new SW
+document.getElementById("update-refresh-btn").addEventListener("click", async () => {
+    const reg = await navigator.serviceWorker.getRegistration();
+    if (reg.waiting) {
+        reg.waiting.postMessage({ action: "skipWaiting" });
+    }
+});
+
+// Reload when new SW takes control
 navigator.serviceWorker.addEventListener("controllerchange", () => {
     window.location.reload();
 });
+
 
