@@ -151,7 +151,7 @@
 
 
 .update-banner {
-    position: fixed;
+    position: absolute;
     bottom: var(--spacing);
     left: 50%;
     transform: translateX(-50%) translateY(20px);
