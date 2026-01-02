@@ -112,14 +112,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // RSS
 
+// Assumes site is served from https://yourdomain.com/
+// and posts live at /posts/post1/index.html, /posts/post2/index.html, ...
+
 function basePath() {
-  const path = location.pathname;
-  return path.endsWith('/') ? path : path.replace(/[^/]+$/, '');
+  // For custom domain at root, this is always "/"
+  return '/';
 }
 
 async function discoverPosts() {
   const slugs = [];
 
+  // Adjust upper bound if you expect more posts
   for (let i = 1; i <= 200; i++) {
     const slug = `post${i}`;
     const url = `${basePath()}posts/${slug}/index.html`;
@@ -137,7 +141,10 @@ async function discoverPosts() {
 
 async function fetchPostData(slug) {
   const url = `${basePath()}posts/${slug}/index.html`;
-  const html = await fetch(url).then(r => r.text());
+  const html = await fetch(url).then(r => {
+    if (!r.ok) throw new Error(`Failed to fetch ${url}`);
+    return r.text();
+  });
 
   const title = html.match(/<title>(.*?)<\/title>/i)?.[1]?.trim() || slug;
   const description = html.match(/<meta name="description" content="([^"]+)"/i)?.[1]?.trim() || '';
@@ -147,8 +154,15 @@ async function fetchPostData(slug) {
   return { slug, title, description, main, img };
 }
 
+function escapeXml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 function buildRSS(items) {
-  const siteUrl = location.origin + basePath();
+  const siteUrl = self.location.origin + basePath();
 
   let xml = `<?xml version="1.0"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
@@ -174,35 +188,34 @@ function buildRSS(items) {
   return xml;
 }
 
-function escapeXml(str) {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
-
 async function generateRSS() {
   const slugs = await discoverPosts();
   const posts = [];
 
   for (const slug of slugs) {
-    posts.push(await fetchPostData(slug));
+    try {
+      posts.push(await fetchPostData(slug));
+    } catch (e) {
+      // skip broken posts
+    }
   }
 
   return buildRSS(posts);
 }
 
-// Optional: for debugging in the page
-window.downloadRSS = async function () {
-  const rss = await generateRSS();
-  const blob = new Blob([rss], { type: 'application/rss+xml' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'rss.xml';
-  a.click();
-  URL.revokeObjectURL(url);
-};
+// Optional: if you also include this in a page for debugging
+if (typeof window !== 'undefined') {
+  window.downloadRSS = async function () {
+    const rss = await generateRSS();
+    const blob = new Blob([rss], { type: 'application/rss+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'rss.xml';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+}
 
 
 
