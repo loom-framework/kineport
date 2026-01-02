@@ -62,7 +62,9 @@ navigator.serviceWorker.addEventListener("controllerchange", () => {
 
 // Notifications question 
 
-document.getElementById("enable-notifications").addEventListener("click", async () => {
+document.addEventListener("click", async (e) => {
+    if (e.target.id !== "enable-notifications") return;
+
     if (!("Notification" in window)) {
         console.warn("Notifications are not supported in this browser.");
         return;
@@ -72,12 +74,16 @@ document.getElementById("enable-notifications").addEventListener("click", async 
     console.log("Notification permission:", permission);
 
     if (permission === "granted") {
-        // Hide the button once permission is granted
-        document.getElementById("enable-notifications").style.display = "none";
+        e.target.style.display = "none";
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (Notification.permission === "granted") {
+        const btn = document.getElementById("enable-notifications");
+        if (btn) btn.style.display = "none";
     }
 });
 
 
-if (Notification.permission === "granted") {
-    document.getElementById("enable-notifications").style.display = "none";
-}
+
