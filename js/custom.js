@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Assumes site is served from https://yourdomain.com/
 // and posts live at /posts/post1/index.html, /posts/post2/index.html, ...
-
+/*
 function basePath() {
   // For custom domain at root, this is always "/"
   return '/';
@@ -217,7 +217,7 @@ if (typeof window !== 'undefined') {
   };
 }
 
-
+*/
 
 
 

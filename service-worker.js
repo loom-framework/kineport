@@ -1,5 +1,5 @@
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v29"; // bump this for every release
+const SW_VERSION = "v30"; // bump this for every release
 const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -86,7 +86,7 @@ self.addEventListener("fetch", (event) => {
 // And register it from your main JS with: navigator.serviceWorker.register('/sw.js');
 
 
-
+/*
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
@@ -104,5 +104,5 @@ self.addEventListener('fetch', event => {
   }
 });
 
-
+*/
 
