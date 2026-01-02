@@ -1,5 +1,5 @@
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v31"; 
+const SW_VERSION = "v32"; 
 const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
