@@ -17,7 +17,7 @@ window.addEventListener('beforeprint', () => {
     if (drawer) drawer.classList.remove('open');
 });
 
-// logic 
+// service worker logic 
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js").then((reg) => {
@@ -60,3 +60,24 @@ navigator.serviceWorker.addEventListener("controllerchange", () => {
 });
 
 
+// Notifications question 
+
+document.getElementById("enable-notifications").addEventListener("click", async () => {
+    if (!("Notification" in window)) {
+        console.warn("Notifications are not supported in this browser.");
+        return;
+    }
+
+    const permission = await Notification.requestPermission();
+    console.log("Notification permission:", permission);
+
+    if (permission === "granted") {
+        // Hide the button once permission is granted
+        document.getElementById("enable-notifications").style.display = "none";
+    }
+});
+
+
+if (Notification.permission === "granted") {
+    document.getElementById("enable-notifications").style.display = "none";
+}
