@@ -17,7 +17,9 @@ window.addEventListener('beforeprint', () => {
     if (drawer) drawer.classList.remove('open');
 });
 
-// service worker logic 
+// ------------------------------
+// SERVICE WORKER UPDATE LOGIC
+// ------------------------------
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js").then((reg) => {
@@ -42,15 +44,18 @@ if ("serviceWorker" in navigator) {
 // Show in-page update banner
 function showUpdateBanner() {
     const banner = document.getElementById("update-banner");
+    if (!banner) return;
     banner.hidden = false;
     banner.classList.add("update-banner--visible");
 }
 
 // When user clicks "Update", activate new SW
-document.getElementById("update-refresh-btn").addEventListener("click", async () => {
-    const reg = await navigator.serviceWorker.getRegistration();
-    if (reg.waiting) {
-        reg.waiting.postMessage({ action: "skipWaiting" });
+document.addEventListener("click", async (e) => {
+    if (e.target.id === "update-refresh-btn") {
+        const reg = await navigator.serviceWorker.getRegistration();
+        if (reg && reg.waiting) {
+            reg.waiting.postMessage({ action: "skipWaiting" });
+        }
     }
 });
 
@@ -60,8 +65,11 @@ navigator.serviceWorker.addEventListener("controllerchange", () => {
 });
 
 
-// Notifications question 
+// ------------------------------
+// NOTIFICATION PERMISSION LOGIC
+// ------------------------------
 
+// Event delegation: works even if header loads later
 document.addEventListener("click", async (e) => {
     if (e.target.id !== "enable-notifications") return;
 
@@ -75,15 +83,22 @@ document.addEventListener("click", async (e) => {
 
     if (permission === "granted") {
         e.target.style.display = "none";
+
+        // Optional: test notification
+        new Notification("Notifications enabled", {
+            body: "You will now receive updates."
+        });
     }
 });
 
+// Hide button automatically if permission already granted
 document.addEventListener("DOMContentLoaded", () => {
     if (Notification.permission === "granted") {
         const btn = document.getElementById("enable-notifications");
         if (btn) btn.style.display = "none";
     }
 });
+
 
 
 
