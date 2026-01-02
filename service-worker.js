@@ -1,11 +1,11 @@
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v23"; // bump this for every release
+const SW_VERSION = "v24"; // bump this for every release
 const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
   "/",
-  "/about/",
-  "/contact/",
+  "/about",
+  "/contact",
   "/offline",
   "/debug",
   "/css/variables.css",
