@@ -112,17 +112,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // RSS
 
+function basePath() {
+  const path = location.pathname;
+  return path.endsWith('/') ? path : path.replace(/[^/]+$/, '');
+}
+
 async function discoverPosts() {
   const slugs = [];
 
   for (let i = 1; i <= 200; i++) {
     const slug = `post${i}`;
-    const url = `/posts/${slug}/index.html`;
+    const url = `${basePath()}posts/${slug}/index.html`;
 
-    const res = await fetch(url, { method: 'HEAD' });
-
-    if (res.ok) {
-      slugs.push(slug);
+    try {
+      const res = await fetch(url, { method: 'HEAD' });
+      if (res.ok) slugs.push(slug);
+    } catch (e) {
+      // ignore network errors
     }
   }
 
@@ -130,25 +136,19 @@ async function discoverPosts() {
 }
 
 async function fetchPostData(slug) {
-  const html = await fetch(`/posts/${slug}/index.html`).then(r => r.text());
+  const url = `${basePath()}posts/${slug}/index.html`;
+  const html = await fetch(url).then(r => r.text());
 
-  const title = html.match(/<title>(.*?)<\/title>/i)?.[1] || slug;
-  const description = html.match(/<meta name="description" content="([^"]+)"/i)?.[1] || '';
+  const title = html.match(/<title>(.*?)<\/title>/i)?.[1]?.trim() || slug;
+  const description = html.match(/<meta name="description" content="([^"]+)"/i)?.[1]?.trim() || '';
   const main = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i)?.[1] || html;
   const img = main.match(/<img[^>]+src="([^"]+)"/i)?.[1] || null;
 
   return { slug, title, description, main, img };
 }
 
-async function generateRSS() {
-  const siteUrl = location.origin;
-
-  const slugs = await discoverPosts();
-  const posts = [];
-
-  for (const slug of slugs) {
-    posts.push(await fetchPostData(slug));
-  }
+function buildRSS(items) {
+  const siteUrl = location.origin + basePath();
 
   let xml = `<?xml version="1.0"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
@@ -158,13 +158,13 @@ async function generateRSS() {
 <description>Latest posts</description>
 `;
 
-  for (const p of posts) {
+  for (const p of items) {
     xml += `
 <item>
-<title>${p.title}</title>
-<link>${siteUrl}/posts/${p.slug}/</link>
-<description>${p.description}</description>
-<guid>${siteUrl}/posts/${p.slug}/</guid>
+<title>${escapeXml(p.title)}</title>
+<link>${siteUrl}posts/${p.slug}/</link>
+<description>${escapeXml(p.description)}</description>
+<guid>${siteUrl}posts/${p.slug}/</guid>
 <content:encoded><![CDATA[${p.main}]]></content:encoded>
 </item>
 `;
@@ -174,8 +174,35 @@ async function generateRSS() {
   return xml;
 }
 
+function escapeXml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
 
+async function generateRSS() {
+  const slugs = await discoverPosts();
+  const posts = [];
 
+  for (const slug of slugs) {
+    posts.push(await fetchPostData(slug));
+  }
+
+  return buildRSS(posts);
+}
+
+// Optional: for debugging in the page
+window.downloadRSS = async function () {
+  const rss = await generateRSS();
+  const blob = new Blob([rss], { type: 'application/rss+xml' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'rss.xml';
+  a.click();
+  URL.revokeObjectURL(url);
+};
 
 
 

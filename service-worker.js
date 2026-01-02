@@ -1,5 +1,5 @@
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v26"; // bump this for every release
+const SW_VERSION = "v27"; // bump this for every release
 const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -80,16 +80,24 @@ self.addEventListener("fetch", (event) => {
 
 // RSS
 
+// If you place rss.js at the root:
+importScripts('./custom.js');
+
 self.addEventListener('fetch', event => {
-  if (event.request.url.endsWith('/rss.xml')) {
+  const url = new URL(event.request.url);
+
+  if (url.pathname.endsWith('/rss.xml')) {
     event.respondWith(
       (async () => {
         const rss = await generateRSS();
         return new Response(rss, {
-          headers: { 'Content-Type': 'application/rss+xml' }
+          headers: { 'Content-Type': 'application/rss+xml; charset=utf-8' }
         });
       })()
     );
+    return;
   }
 });
+
+
 
