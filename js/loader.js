@@ -14,33 +14,43 @@
 
       el.innerHTML = await res.text();
 
-      // ------------------------------------------------------------
-      // 🔥 FIX: Hide notification button AFTER header loads
-      // ------------------------------------------------------------
-// Automatically hide the notification button whenever it appears
-const navRoot = document.getElementById("component-nav");
+    } catch (err) {
+      console.error('Failed to load component:', path, err);
+    }
+  } // ✅ closes loadComponent()
 
-if (navRoot) {
-  const observer = new MutationObserver(() => {
-    const btn = document.getElementById("enable-notifications");
-    if (btn && Notification.permission === "granted") {
-      btn.style.display = "none";
+
+  // ------------------------------------------------------------
+  // MutationObserver to hide notification button
+  // ------------------------------------------------------------
+  document.addEventListener("DOMContentLoaded", () => {
+    const navRoot = document.getElementById("component-nav");
+
+    if (navRoot) {
+      const observer = new MutationObserver(() => {
+        const btn = document.getElementById("enable-notifications");
+        if (btn && Notification.permission === "granted") {
+          btn.style.display = "none";
+        }
+      });
+
+      observer.observe(navRoot, {
+        childList: true,
+        subtree: true
+      });
     }
   });
 
-  observer.observe(navRoot, {
-    childList: true,
-    subtree: true
-  });
-}
 
-
+  // ------------------------------------------------------------
   // Load components after DOM is ready
+  // ------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', function () {
     loadComponent('component-header', '/components/header.html');
     loadComponent('component-nav', '/components/nav.html');
     loadComponent('component-footer', '/components/footer.html');
   });
+
 
   // ------------------------------------------------------------
   // Service Worker Registration
@@ -77,4 +87,4 @@ if (navRoot) {
     });
   }
 
-})();
+})(); 
