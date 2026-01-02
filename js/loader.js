@@ -17,7 +17,7 @@
       // ------------------------------------------------------------
       // 🔥 FIX: Hide notification button AFTER header loads
       // ------------------------------------------------------------
-      if (id === 'component-header') {
+      if (id === 'component-nav') {
         const btn = document.getElementById('enable-notifications');
         if (btn && Notification.permission === 'granted') {
           btn.style.display = 'none';
