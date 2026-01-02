@@ -32,24 +32,6 @@ if ("serviceWorker" in navigator) {
 
 
 
-  document.documentElement.style.display = "none";
-
-  const PASSWORD = "my-secret";
-
-  if (localStorage.getItem("auth") !== "1") {
-    const p = prompt("Password:");
-    if (p === PASSWORD) {
-      localStorage.setItem("auth", "1");
-      document.documentElement.style.display = "";
-    } else {
-      document.documentElement.innerHTML = "";
-    }
-  } else {
-    document.documentElement.style.display = "";
-  }
-
-
-
 
 
 
