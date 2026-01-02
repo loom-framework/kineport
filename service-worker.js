@@ -1,5 +1,5 @@
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v28"; // bump this for every release
+const SW_VERSION = "v29"; // bump this for every release
 const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -82,10 +82,16 @@ self.addEventListener("fetch", (event) => {
 
 
 
+// Place sw.js at the root: https://yourdomain.com/sw.js
+// And register it from your main JS with: navigator.serviceWorker.register('/sw.js');
+
+
+
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  if (url.pathname.endsWith('/rss.xml')) {
+  // Serve virtual RSS at https://yourdomain.com/rss.xml
+  if (url.pathname === '/rss.xml') {
     event.respondWith(
       (async () => {
         const rss = await generateRSS();
