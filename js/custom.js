@@ -110,5 +110,75 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// RSS
+
+async function discoverPosts() {
+  const slugs = [];
+
+  for (let i = 1; i <= 200; i++) {
+    const slug = `post${i}`;
+    const url = `/posts/${slug}/index.html`;
+
+    const res = await fetch(url, { method: 'HEAD' });
+
+    if (res.ok) {
+      slugs.push(slug);
+    }
+  }
+
+  return slugs;
+}
+
+async function fetchPostData(slug) {
+  const html = await fetch(`/posts/${slug}/index.html`).then(r => r.text());
+
+  const title = html.match(/<title>(.*?)<\/title>/i)?.[1] || slug;
+  const description = html.match(/<meta name="description" content="([^"]+)"/i)?.[1] || '';
+  const main = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i)?.[1] || html;
+  const img = main.match(/<img[^>]+src="([^"]+)"/i)?.[1] || null;
+
+  return { slug, title, description, main, img };
+}
+
+async function generateRSS() {
+  const siteUrl = location.origin;
+
+  const slugs = await discoverPosts();
+  const posts = [];
+
+  for (const slug of slugs) {
+    posts.push(await fetchPostData(slug));
+  }
+
+  let xml = `<?xml version="1.0"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>My PWA Blog</title>
+<link>${siteUrl}</link>
+<description>Latest posts</description>
+`;
+
+  for (const p of posts) {
+    xml += `
+<item>
+<title>${p.title}</title>
+<link>${siteUrl}/posts/${p.slug}/</link>
+<description>${p.description}</description>
+<guid>${siteUrl}/posts/${p.slug}/</guid>
+<content:encoded><![CDATA[${p.main}]]></content:encoded>
+</item>
+`;
+  }
+
+  xml += `</channel></rss>`;
+  return xml;
+}
+
+
+
+
+
+
+
 
 
