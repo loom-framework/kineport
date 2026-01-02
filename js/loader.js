@@ -17,17 +17,23 @@
       // ------------------------------------------------------------
       // 🔥 FIX: Hide notification button AFTER header loads
       // ------------------------------------------------------------
-      if (id === 'component-nav') {
-        const btn = document.getElementById('enable-notifications');
-        if (btn && Notification.permission === 'granted') {
-          btn.style.display = 'none';
-        }
-      }
+// Automatically hide the notification button whenever it appears
+const navRoot = document.getElementById("component-nav");
 
-    } catch (err) {
-      console.error('Failed to load component:', path, err);
+if (navRoot) {
+  const observer = new MutationObserver(() => {
+    const btn = document.getElementById("enable-notifications");
+    if (btn && Notification.permission === "granted") {
+      btn.style.display = "none";
     }
-  }
+  });
+
+  observer.observe(navRoot, {
+    childList: true,
+    subtree: true
+  });
+}
+
 
   // Load components after DOM is ready
   document.addEventListener('DOMContentLoaded', function () {
