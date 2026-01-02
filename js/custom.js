@@ -31,6 +31,22 @@ if ("serviceWorker" in navigator) {
 
 
 
+const PASSWORD = "my-secret";
+
+if (localStorage.getItem("auth") !== "1") {
+  const p = prompt("Password:");
+  if (p === PASSWORD) {
+    localStorage.setItem("auth", "1");
+  } else {
+    document.documentElement.innerHTML = "";
+  }
+}
+
+
+
+
+
+
 /*if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js").then((reg) => {
 
