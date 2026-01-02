@@ -154,7 +154,7 @@
 
 
 
-/* update */
+/* update
 
 .update-banner {
     position: fixed;
@@ -199,7 +199,7 @@
 .update-banner__btn:hover,
 .update-banner__btn:focus-visible {
     background: color-mix(in srgb, var(--color-primary) 80%, black);
-}
+} */
 
 
 

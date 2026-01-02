@@ -22,6 +22,16 @@ window.addEventListener('beforeprint', () => {
 // ------------------------------
 
 if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js");
+
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+        window.location.reload();
+    });
+}
+
+
+
+/*if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js").then((reg) => {
 
         // If a new SW is already waiting
@@ -62,7 +72,7 @@ document.addEventListener("click", async (e) => {
 // Reload when new SW takes control
 navigator.serviceWorker.addEventListener("controllerchange", () => {
     window.location.reload();
-});
+});*/
 
 
 // ------------------------------
