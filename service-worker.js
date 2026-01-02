@@ -1,5 +1,5 @@
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v21"; // bump this for every release
+const SW_VERSION = "v22"; // bump this for every release
 const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -61,21 +61,25 @@ self.addEventListener("activate", (event) => {
     }*/
     
     
-    // Navigation requests: network-first with redirect support
-if (req.mode === "navigate") {
-  event.respondWith(
-    fetch(req, { redirect: "follow" })
-      .then(response => {
-        // If the response is OK or a redirect that was followed, return it
-        if (response && response.ok) return response;
+self.addEventListener("fetch", event => {
+  const req = event.request;
 
-        // If something weird happens, fall back to offline page
-        return caches.match("/offline");
-      })
-      .catch(() => caches.match("/offline"))
-  );
-  return;
-}
+  // Navigation requests: network-first with redirect support
+  if (req.mode === "navigate") {
+    event.respondWith(
+      fetch(req, { redirect: "follow" })
+        .then(response => {
+          if (response && response.ok) return response;
+          return caches.match("/offline");
+        })
+        .catch(() => caches.match("/offline"))
+    );
+    return; // <-- legal ONLY inside this function
+  }
+
+  // ... other fetch logic ...
+}); 
+
 
     
     
