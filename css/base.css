@@ -18,6 +18,14 @@ body {
     line-height: var(--line-height);
     color: var(--color-text);
     background: var(--color-bg);
+    /* 1. Force standard thickness (Regular) */
+    font-weight: 400; 
+    
+    /* 2. Force standard width (DO NOT condense body text, it's hard to read) */
+    font-stretch: 100%; 
+    
+    /* 3. Improves kerning/sharpness for text */
+    text-rendering: optimizeLegibility;
 }
 .container {
     width: min(1200px, 94%);
