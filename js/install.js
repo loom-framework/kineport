@@ -5,8 +5,8 @@ window.addEventListener('beforeinstallprompt', (e)=>{
   deferredPrompt = e;
   // show custom install CTA if desired
   const btn = document.createElement('button');
-  btn.textContent = 'Install app';
-  btn.className='btn';
+  btn.textContent = 'Install as app';
+  btn.className='set_btn';
   btn.addEventListener('click', async ()=>{
     btn.disabled=true;
     deferredPrompt.prompt();
@@ -15,5 +15,5 @@ window.addEventListener('beforeinstallprompt', (e)=>{
     deferredPrompt = null;
     btn.remove();
   });
-  document.querySelector('.drawer-footer')?.appendChild(btn);
+  document.querySelector('.drawer-settings')?.appendChild(btn);
 });

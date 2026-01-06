@@ -1,20 +1,20 @@
 /* ui.js — global UI interactions (component-safe) */
 
 // Restore theme on load
-(function restoreTheme() {
+/*(function restoreTheme() {
     try {
         const theme = localStorage.getItem('theme');
         if (theme) {
             document.documentElement.setAttribute('data-theme', theme);
         }
     } catch (e) {}
-})();
+})();*/
 
-document.addEventListener('click', function (e) {
+ /*document.addEventListener('click', function (e) {
 
-    /* ======================
+     ======================
        THEME TOGGLE
-    ====================== */
+    ====================== 
     if (e.target?.id === 'theme-toggle') {
         const current = document.documentElement.getAttribute('data-theme');
         const next = current === 'dark' ? 'light' : 'dark';
@@ -25,7 +25,7 @@ document.addEventListener('click', function (e) {
         try { localStorage.setItem('theme', next); } catch (e) {}
     }
 
-});
+});*/
 
 
 

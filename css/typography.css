@@ -57,7 +57,8 @@ p {
 
 /* Use for "Condensed" text (like badges or small metadata) */
 .condensed-text {
-  font-stretch: 75%; /* Makes text narrower */
+  font-stretch: 100%; /* Makes text narrower */
+    padding-right: 10px;
 }
 /* Use for semi-bold UI elements */
 .semibold {

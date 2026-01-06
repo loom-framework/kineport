@@ -9,7 +9,7 @@
 }*/
 
 
-.btn {
+/*.btn {
  border-radius: inherit;
  cursor: inherit;
  display: inline-flex;
@@ -30,7 +30,72 @@
  padding: 0;
  gap: inherit;
  text-transform: inherit
- }
+ }*/
+
+.btn {
+  padding: 0.3em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 2rem;
+  background-color: #4ade80; /* green */
+  color: #fff;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.btn:hover {
+  background-color: #22c55e; /* darker green */
+
+}
+
+/* Focus (keyboard accessibility) */
+.btn:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Active/click effect */
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+.set_btn {
+  padding: 0.5em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 2rem;
+  background-color: #4ade80; /* green */
+  color: #fff;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.set_btn:hover {
+  background-color: #22c55e; /* darker green */
+
+}
+
+/* Focus (keyboard accessibility) */
+.set_btn:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Active/click effect */
+.set_btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
 
 
 

@@ -225,5 +225,69 @@ if (typeof window !== 'undefined') {
 */
 
 
+/*const switchBtn = document.querySelector('.switch');
+
+switchBtn.addEventListener('click', () => {
+  const isOn = switchBtn.getAttribute('aria-checked') === 'true';
+  switchBtn.setAttribute('aria-checked', String(!isOn));
+});*/
+
+
+/*document.addEventListener('click', function (e) {
+  const toggle = e.target.closest('#theme-toggle');
+  if (!toggle) return;
+
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme') || 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+
+  root.setAttribute('data-theme', next);
+  toggle.setAttribute('aria-checked', String(next === 'dark'));
+
+  try {
+    localStorage.setItem('theme', next);
+  } catch {}
+});*/
+
+
+// Restore theme on load
+(function restoreTheme() {
+    let saved = null;
+
+    try {
+        saved = localStorage.getItem('theme');
+    } catch (e) {}
+
+    const theme = saved || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.checked = theme === 'dark';
+        toggle.setAttribute('aria-pressed', theme === 'dark');
+    }
+})();
+
+
+// Global click handler (safe even if toggle doesn't exist yet)
+document.addEventListener('click', function (e) {
+    if (e.target?.id === 'theme-toggle') {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', next);
+        e.target.checked = next === 'dark';
+        e.target.setAttribute('aria-pressed', next === 'dark');
+
+        try { localStorage.setItem('theme', next); } catch (e) {}
+    }
+});
+
+
+
+
+
+
+
 
 

@@ -26,7 +26,7 @@
   </ul>
 	
 	 
-                   
+      
         	
 		   <div class="drawer-grid-2">
                         <section>
@@ -41,19 +41,47 @@
                     </div>
        
           
-	
-	
-	 <footer class="drawer-footer">
-   <button id="enable-notifications" class="btn" >Enable Notifications</button>
+	 <section class="drawer-settings">
+  
+     <!-- <label class="theme-switch">
+  <input type="checkbox" id="theme-toggle" aria-pressed="false">
+  <span class="slider"></span>
+</label>-->
 
-		  <button id="theme-toggle" class="btn" aria-pressed="false" aria-label="Toggle dark mode">Toggle theme</button>
-		 <button
+ <button id="enable-notifications" class="set_btn" >Enable Notifications</button>
+<button
   id="print-page"
-  class="btn"
+  class="set_btn"
   type="button"
   aria-label="Print this page">
-  Print
-</button>
+  Print this page
+</button>            
+
+  </section>
+	
+	 <footer class="drawer-footer">
+  
+     <!-- <label class="theme-switch">
+  <input type="checkbox" id="theme-toggle" aria-pressed="false">
+  <span class="slider"></span>
+</label>-->
+ <div class=condensed-text >Enable dark mode</div>
+  <label class="theme-toggle">
+  <input type="checkbox" id="theme-toggle" aria-pressed="false">
+  <span class="slider">
+    <span class="knob">
+      <!-- Sun -->
+      <svg class="sun" viewBox="0 0 24 24">
+        <path d="M12 4V2m0 20v-2m8-8h2M2 12h2m14.95 6.95l1.41 1.41M4.64 4.64l1.41 1.41m0 12.72l-1.41 1.41m14.72-14.72l-1.41 1.41M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+      </svg>
+
+      <!-- Moon -->
+      <svg class="moon" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+    </span>
+  </span>
+</label>
 
   </footer>
 	
