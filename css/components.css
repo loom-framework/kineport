@@ -1,12 +1,38 @@
 
-.btn {
+/*.btn {
     display: inline-block;
     padding: 0.6rem 0.9rem;
     border-radius: 6px;
     background: var(--color-primary);
     color: white;
     text-decoration: none;
-}
+}*/
+
+
+.btn {
+ border-radius: inherit;
+ cursor: inherit;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ border: none;
+ outline: none;
+ -webkit-appearance: none;
+ vertical-align: middle;
+ background: black;
+ text-decoration: none;
+ min-width: 64px;
+ width: 100%;
+ z-index: 0;
+ height: 100%;
+ font: inherit;
+ color: red;
+ padding: 0;
+ gap: inherit;
+ text-transform: inherit
+ }
+
+
 
 /* =========================
    Global variables
