@@ -12,6 +12,14 @@
     z-index: 1001;
 }
 
+.mobile-drawer a:hover {
+  opacity: 50%; 
+}
+
+.site-header a:hover {
+  opacity: 50%; 
+}
+
 .menu-overlay {
     position: fixed;
     visibility: visible;
@@ -213,7 +221,7 @@
     background: color-mix(in srgb, var(--color-primary) 80%, black);
 } */
 
-/* Toggle styling */
+/* Toggle styling 
 .theme-switch {
     display: inline-flex;
     align-items: center;
@@ -247,7 +255,7 @@
 }
 .theme-switch input:checked + .slider::before {
     transform: translateX(20px);
-}
+}*/
 
 
 
@@ -332,6 +340,12 @@
 a {
   text-decoration: none;
  
+ 
+    
+    
+    
+    
+    
 }
 a:visited {
   color: inherit;
