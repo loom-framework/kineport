@@ -38,7 +38,7 @@
   font-weight: 500;
 
   border: none;
-  border-radius: 2rem;
+  border-radius: 0.4rem;
   background-color: #4ade80; /* green */
   color: #fff;
 
@@ -52,15 +52,21 @@
 
 }
 
+a.btn:visited { 
+  color: #fff;
+}
+
+
+
 /* Focus (keyboard accessibility) */
 .btn:focus-visible {
-  outline: 3px solid #2563eb;
-  outline-offset: 2px;
+  outline: none;
+  outline-offset: none;
 }
 
 /* Active/click effect */
 .btn:active {
-  transform: translateY(0);
+  
   box-shadow: none;
 }
 
@@ -87,13 +93,13 @@
 
 /* Focus (keyboard accessibility) */
 .set_btn:focus-visible {
-  outline: 3px solid #2563eb;
-  outline-offset: 2px;
+  outline: none;
+  outline-offset: none;
 }
 
 /* Active/click effect */
 .set_btn:active {
-  transform: translateY(0);
+  
   box-shadow: none;
 }
 
