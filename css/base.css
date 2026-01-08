@@ -32,6 +32,17 @@ body {
     margin: 0 auto;
     padding: var(--spacing) 0;
 }
+
+.container a {
+  font-weight: 600;
+  color: green;
+  text-decoration: none;
+}
+
+.container a:hover {
+  opacity: 50%; 
+}
+
 img {
     max-width: 100%;
     height: auto;
