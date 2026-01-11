@@ -118,6 +118,22 @@ ul, ol {
 }
 
 @media print {
+
+    /* Always force light theme when printing */
+    html {
+        --color-bg: #ffffff !important;
+        --color-text: #1f2937 !important;
+        --color-surface: #ffffff !important;
+        --color-primary: #0059ff !important;
+
+        color-scheme: light !important;
+    }
+
+    body {
+        background: var(--color-bg) !important;
+        color: var(--color-text) !important;
+    }
+
     /* Preserve colors */
     * {
         -webkit-print-color-adjust: exact;
