@@ -1,6 +1,6 @@
 {
-  "name": "My W3C App",
-  "short_name": "W3CApp",
+  "name": "Kineport App",
+  "short_name": "Kineport",
   "id": "/index.html",
   "start_url": "/",
  "display_override": ["standalone", "minimal-ui"],

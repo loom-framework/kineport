@@ -1,10 +1,17 @@
+<!--
+Description: Main application shell.
+Author: Janis Bedeicis
+Github: https://github.com/loom-framework
+E-mail: loom.framework@gmail.com
+Created: 2008
+-->
 <!doctype html>
 <html lang="en" data-theme="light">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="description" content="yes" />
-        <title>yes</title>
+        <title>Kineport</title>
         <meta name="description" content="ok" />
         <meta name="author" content="Your Name" />
         <meta name="keywords" content="ok" />
@@ -16,6 +23,14 @@
         <meta name="robots" content="noindex, nofollow" />
         <meta name="googlebot" content="noindex, nofollow" />
 
+        
+        <link rel="preload" 
+      href="/assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf" 
+      as="font" 
+      type="font/ttf" 
+      crossorigin>
+        
+        
         <!-- Open Graph / Facebook -->
         <meta property="og:title" content="ok" />
         <meta property="og:description" content="ok" />
@@ -48,12 +63,6 @@
         <link rel="stylesheet" href="/css/custom.css" />
     </head>
     <body>
-        <!-- <div class="update-banner" id="update-banner" hidden>
-    <div class="update-banner__content">
-        <span class="update-banner__text">A new version is available.</span>
-        <button class="update-banner__btn" id="update-refresh-btn">Update</button>
-    </div>
-</div>-->
 
         <!-- header + nav -->
         <!-- Use server-side include, build tool, or copy HTML into index.html if server doesn't support <include> -->
@@ -62,9 +71,9 @@
 
         <main id="main" role="main" class="container">
             <section id="hero" class="hero">
-                <h1>Lorem Ipsum</h1>
+                <h1>Kineport Lines</h1>
                 <p class="lead">Layouts with some layouts and som tex between them.</p>
-                <p><a class="btn" href="#features">Explore features</a></p>
+                <button class="btn" href="#features">Explore features</button>
             </section>
 
             <section id="features" aria-labelledby="features-title">
@@ -110,7 +119,10 @@
                     <div class="grid-3 demo-boxes" role="list">
                         <div role="listitem">Box 1</div>
                         <div role="listitem">Box 2</div>
-                        <div role="listitem">Box 3</div>
+                        <div role="listitem">Box 3
+                        <a href="/">Home</a>
+                        
+                        </div>
                     </div>
                 </article>
 
@@ -125,10 +137,8 @@
         </main>
 
         <div id="component-footer"></div>
-        <script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon='{"token": "1d2fbe520b574dddb3fb477912e0af4c"}'></script>
+        
+       
         <script src="/js/loader.js" defer></script>
         <script type="module" src="/js/storage.js"></script>
         <script type="module" src="/js/ui.js"></script>
