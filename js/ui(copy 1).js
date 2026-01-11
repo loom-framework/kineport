@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ------------------------------
 
 
-// --- Restore theme immediately (before paint) -------------------------------
+// Restore theme on load
 (function restoreTheme() {
     let saved = null;
 
@@ -79,31 +79,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const theme = saved || 'light';
     document.documentElement.setAttribute('data-theme', theme);
-})();
-    
 
-// --- Apply toggle state once the toggle actually exists ---------------------
-function applyToggleState() {
-    const saved = localStorage.getItem('theme') || 'light';
     const toggle = document.getElementById('theme-toggle');
-
     if (toggle) {
-        toggle.checked = saved === 'dark';
-        toggle.setAttribute('aria-pressed', saved === 'dark');
+        toggle.checked = theme === 'dark';
+        toggle.setAttribute('aria-pressed', theme === 'dark');
     }
-}
-
-// Try immediately (in case toggle already exists)
-applyToggleState();
-
-// Watch for dynamically inserted components (header, nav, etc.)
-new MutationObserver(applyToggleState).observe(document.body, {
-    childList: true,
-    subtree: true
-});
+})();
 
 
-// --- Global click handler ---------------------------------------------------
+// Global click handler (safe even if toggle doesn't exist yet)
 document.addEventListener('click', function (e) {
     if (e.target?.id === 'theme-toggle') {
         const current = document.documentElement.getAttribute('data-theme');
@@ -117,6 +102,30 @@ document.addEventListener('click', function (e) {
     }
 });
 
+// ------------------------------
+// PRINTING
+// ------------------------------
+
+
+
+// Universal print button
+document.addEventListener('click', function (e) {
+    if (e.target?.id === 'print-page') {
+
+        // Close drawer before print
+        const drawer = document.querySelector('.mobile-drawer');
+        if (drawer) drawer.classList.remove('open');
+
+        // Allow layout to update before printing
+        setTimeout(() => window.print(), 50);
+    }
+});
+
+// Ensure drawer is closed before print
+window.addEventListener('beforeprint', () => {
+    const drawer = document.querySelector('.mobile-drawer');
+    if (drawer) drawer.classList.remove('open');
+});
 
 // ------------------------------
 // SERVICE WORKER UPDATE LOGIC
