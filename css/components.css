@@ -267,23 +267,33 @@ body {
     border-bottom: none;
 }
 
+
+
+
 .drawer-settings {
-    grid-template-columns: 1fr;
     position: absolute;
     bottom: 40px;
     left: 0;
     z-index: 1000;
-    height: 191px;
-    width: 100%;
+    
     display: grid;
-    align-items: center;
-    justify-content: center;
-    padding: 0 30px;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    
+    width: 100%;
+    height: fit-content;        /* ensures height matches content exactly */
+    padding: 15px 30px;        /* adjust padding as needed */
+    
     background: #fff;
     border-top: none;
-    gap: 0px;
-    align-content: space-evenly;
+    
+    align-items: center;       /* centers items in their grid cells */
+    justify-content: center;   /* horizontal centering of items */
+    align-content: start;      /* avoids extra spacing if container grows */
 }
+
+
+
 
 .drawer-footer {
     position: absolute;
@@ -297,7 +307,7 @@ body {
     justify-content: end;
     padding: 0 16px;
     background: #fff;
-    border-top: 1px solid #ddd;
+    border-top: none;
 }
 
 
