@@ -1,3 +1,12 @@
+// -----------------------------------------------------------------------------
+// Description: Application bootstrap and initialization logic.
+// Author: Janis Bedeicis
+// Github: https://github.com/loom-framework
+// E-mail: loom.framework@gmail.com
+// Created: 2008
+// -----------------------------------------------------------------------------
+
+
 // Optional: show install prompt when available
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e)=>{
