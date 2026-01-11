@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v38"; 
+const SW_VERSION = "v37"; 
 const CACHE_NAME = `kineport-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -59,51 +59,29 @@ self.addEventListener("activate", (event) => {
 // --- Fetch ------------------------------------------------------------------
 self.addEventListener("fetch", (event) => {
     const req = event.request;
-    const url = new URL(req.url);
 
-    // Ignore non-HTTP(S) schemes (chrome-extension://, file://, data://, blob://)
-    if (!req.url.startsWith("http")) {
-        return;
-    }
-
-    // Ignore cross-origin requests (optional but recommended for clean caches)
-    if (url.origin !== self.location.origin) {
-        return;
-    }
-
-    // Navigation requests: network-first
+    // Navigation: network-first
     if (req.mode === "navigate") {
         event.respondWith(
             fetch(req).catch(() => caches.match("/offline"))
         );
         return;
     }
+    
 
     // Other GET requests: cache-first
     if (req.method === "GET") {
         event.respondWith(
-            caches.match(req).then((cached) => {
-                if (cached) return cached;
-
-                return fetch(req)
-                    .then((res) => {
-                        // Only cache valid responses
-                        if (!res || res.status !== 200 || res.type !== "basic") {
-                            return res;
-                        }
-
+            caches.match(req).then(
+                (cached) =>
+                    cached ||
+                    fetch(req).then((res) => {
                         const copy = res.clone();
-                        caches.open(CACHE_NAME).then((cache) => {
-                            cache.put(req, copy);
-                        });
-
+                        caches.open(CACHE_NAME).then((c) => c.put(req, copy));
                         return res;
                     })
-                    .catch(() => {
-                        // Optional: fallback for failed GETs
-                        return caches.match("/offline");
-                    });
-            })
+            )
         );
     }
 });
+
