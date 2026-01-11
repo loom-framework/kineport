@@ -115,7 +115,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background: #fff;
+  background: var(--color-bg);
   border-bottom: none;
 }
 
@@ -146,16 +146,16 @@ body {
 .menu-btn .line {
   width: 100%;
   height: 0;
-  border-top: 2px solid #282828;
+  border-top: 2px solid var(--color-text);
   box-sizing: border-box;
   transition: transform 0.3s ease, opacity 0.3s ease;
   transform-origin: center;
 }
 
 /* individual line customization */
-.menu-btn .line-1 { border-color: black; width: 100%; }
-.menu-btn .line-2 { border-color: black; width: 100%; }
-.menu-btn .line-3 { border-color: black; width: 80%; }
+.menu-btn .line-1 { border-color: var(--color-text); width: 100%; }
+.menu-btn .line-2 { border-color: var(--color-text); width: 100%; }
+.menu-btn .line-3 { border-color: var(--color-text); width: 80%; }
 
 
 .drawer-btn {
@@ -175,7 +175,7 @@ body {
   left: 0;
   width: 100%;
   height: 1.5px;
-  background-color: #282828;
+  background-color:var(--color-text);
   box-sizing: border-box;
 }
 
@@ -183,14 +183,14 @@ body {
 .drawer-btn .line-1 {
   top: 50%;
   transform: rotate(45deg);
-  background-color: black;
+  background-color: var(--color-text);
 }
 
 /* top-right to bottom-left */
 .drawer-btn .line-2 {
   top: 50%;
   transform: rotate(-45deg);
-  background-color: black;
+  background-color: var(--color-text);
 }
 
 /* middle line hidden */
@@ -210,7 +210,7 @@ body {
 .desktop-nav a {
   margin-left: 24px;
   text-decoration: none;
-  color: #222;
+  color: var(--color-text);
   font-size: 16px;
 }
 
@@ -229,7 +229,7 @@ body {
     width: var(--drawer-width);
     max-width: 410px;
     height: 100%;
-    background: #fff;
+    background:var(--color-bg);
     transition: transform 0.25s ease;
     z-index: 1001;
 }
@@ -269,7 +269,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    background: #fff;
+    background: var(--color-bg);
     border-bottom: none;
 }
 
@@ -290,7 +290,7 @@ body {
     height: fit-content;        /* ensures height matches content exactly */
     padding: 15px 30px;        /* adjust padding as needed */
     
-    background: #fff;
+    background: var(--color-bg);
     border-top: none;
     
     align-items: center;       /* centers items in their grid cells */
@@ -312,7 +312,7 @@ body {
     align-items: center;
     justify-content: end;
     padding: 0 16px;
-    background: #fff;
+    background: var(--color-bg);
     border-top: none;
 }
 
@@ -347,7 +347,7 @@ body {
 .mobile-drawer a {
   text-decoration: none;
   font-size: 18px;
-  color: #222;
+  color: var(--color-text);
 }
 
 /* =========================

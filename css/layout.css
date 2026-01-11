@@ -76,7 +76,7 @@ Created: 2008
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    background: white;
+    background: var(--color-bg);
     border-top: none;
 }
 
