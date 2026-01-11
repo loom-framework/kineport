@@ -5,81 +5,66 @@
 <label for="menuToggle" class="menu-overlay" aria-hidden="true"></label>
 
 <!-- Mobile drawer -->
-<nav
-  class="mobile-drawer"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Mobile menu">
-
-	<header class="drawer-header">
+<nav class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile menu">
+  <header class="drawer-header">
     <div>
-    <span class="site-title">Kineport</span>
-  </div>
+      <span class="site-title">Kineport</span>
+    </div>
     <label for="menuToggle" class="drawer-btn" aria-label="Close menu" aria-expanded="true">
-  <span class="line line-1"></span>
-  <span class="line line-2"></span>
-  <span class="line line-3"></span>
-</label>
-
+      <span class="line line-1"></span>
+      <span class="line line-2"></span>
+      <span class="line line-3"></span>
+    </label>
   </header>
-	
-	
-	 <ul>
+
+  <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
+    <li><a href="#subdrawer">About ▸</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
-	
-	 
-      
-        	
-		   <div class="drawer-grid-2">
-                        <section>
-                            <h4>Column A</h4>
-                            <p>Left column content.</p>
-                        </section>
-                        <section>
-                            <h4>Column B</h4>
-                            <p>Right column content.</p>
-						
-                        </section>
-                    </div>
-       
-          
-	 <section class="drawer-settings">
+  <div id="subdrawer" class="sub-drawer">
+    <a href="#" class="back">◂ Back</a>
+    <ul>
+      <li><a href="/about/team">Team</a></li>
+      <li><a href="/about/history">History</a></li>
+      <li><a href="/about/careers">Careers</a></li>
+    </ul>
+  </div>
 
- <button id="enable-notifications" class="set_btn" >Enable Notifications</button>
-<button
-  id="print-page"
-  class="set_btn"
-  type="button"
-  aria-label="Print this page">
-  Print this page
-</button>            
+  <div class="drawer-grid-2">
+    <section>
+      <h4>Column A</h4>
+      <p>Left column content.</p>
+    </section>
+    <section>
+      <h4>Column B</h4>
+      <p>Right column content.</p>
+    </section>
+  </div>
 
+  <section class="drawer-settings">
+    <button id="enable-notifications" class="set_btn">Enable Notifications</button>
+    <button id="print-page" class="set_btn" type="button" aria-label="Print this page">Print this page</button>
   </section>
-	
-	 <footer class="drawer-footer">
-  
- <div class=condensed-text >Enable dark mode</div>
-  <label class="theme-toggle">
-  <input type="checkbox" id="theme-toggle" aria-pressed="false">
-  <span class="slider">
-    <span class="knob">
-      <!-- Sun -->
-      <svg class="sun" viewBox="0 0 24 24">
-        <path d="M12 4V2m0 20v-2m8-8h2M2 12h2m14.95 6.95l1.41 1.41M4.64 4.64l1.41 1.41m0 12.72l-1.41 1.41m14.72-14.72l-1.41 1.41M12 8a4 4 0 100 8 4 4 0 000-8z"/>
-      </svg>
 
-      <!-- Moon -->
-      <svg class="moon" viewBox="0 0 24 24">
-        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-      </svg>
-    </span>
-  </span>
-</label>
+  <footer class="drawer-footer">
+    <div class="condensed-text">Enable dark mode</div>
+    <label class="theme-toggle">
+      <input type="checkbox" id="theme-toggle" aria-pressed="false" />
+      <span class="slider">
+        <span class="knob">
+          <!-- Sun -->
+          <svg class="sun" viewBox="0 0 24 24">
+            <path
+              d="M12 4V2m0 20v-2m8-8h2M2 12h2m14.95 6.95l1.41 1.41M4.64 4.64l1.41 1.41m0 12.72l-1.41 1.41m14.72-14.72l-1.41 1.41M12 8a4 4 0 100 8 4 4 0 000-8z" />
+          </svg>
 
+          <!-- Moon -->
+          <svg class="moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </span>
+      </span>
+    </label>
   </footer>
-	
-	
-  </nav>
+</nav>
