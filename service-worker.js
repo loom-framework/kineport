@@ -1,6 +1,6 @@
 // --- Versioning -------------------------------------------------------------
 const SW_VERSION = "v36"; 
-const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
+const CACHE_NAME = `kineport-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
     "/",
@@ -76,33 +76,4 @@ self.addEventListener("fetch", (event) => {
         );
     }
 });
-
-
-// RSS
-
-
-
-// Place sw.js at the root: https://yourdomain.com/sw.js
-// And register it from your main JS with: navigator.serviceWorker.register('/sw.js');
-
-
-/*
-self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
-
-  // Serve virtual RSS at https://yourdomain.com/rss.xml
-  if (url.pathname === '/rss.xml') {
-    event.respondWith(
-      (async () => {
-        const rss = await generateRSS();
-        return new Response(rss, {
-          headers: { 'Content-Type': 'application/rss+xml; charset=utf-8' }
-        });
-      })()
-    );
-    return;
-  }
-});
-
-*/
 
