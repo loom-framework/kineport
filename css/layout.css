@@ -67,8 +67,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    background: grey;
-    border-top: 1px solid #ddd;
+    background: white;
+    border-top: none;
 }
 
 .site-footer a {

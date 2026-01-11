@@ -21,6 +21,11 @@
 
 }
 
+a.btn:hover {
+  background-color: #22c55e; /* darker green */
+
+}
+
 a.btn:visited { 
   color: #fff;
 }
@@ -105,7 +110,7 @@ body {
   justify-content: space-between;
   padding: 0 16px;
   background: #fff;
-  border-bottom: 1px solid #ddd;
+  border-bottom: none;
 }
 
 /* =========================
@@ -123,10 +128,71 @@ body {
 }
 
 .menu-btn {
-  font-size: 24px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
   cursor: pointer;
-  user-select: none;
+  box-sizing: border-box;
 }
+
+.menu-btn .line {
+  width: 100%;
+  height: 0;
+  border-top: 2px solid #282828;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* individual line customization */
+.menu-btn .line-1 { border-color: black; width: 100%; }
+.menu-btn .line-2 { border-color: black; width: 100%; }
+.menu-btn .line-3 { border-color: black; width: 80%; }
+
+
+.drawer-btn {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 22px;
+  height: 16px;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* base lines */
+.drawer-btn .line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: #282828;
+  box-sizing: border-box;
+}
+
+/* top-left to bottom-right */
+.drawer-btn .line-1 {
+  top: 50%;
+  transform: rotate(45deg);
+  background-color: black;
+}
+
+/* top-right to bottom-left */
+.drawer-btn .line-2 {
+  top: 50%;
+  transform: rotate(-45deg);
+  background-color: black;
+}
+
+/* middle line hidden */
+.drawer-btn .line-3 {
+  display: none;
+}
+
+
 
 /* =========================
    Desktop Navigation
@@ -198,7 +264,7 @@ body {
     justify-content: space-between;
     padding: 0 16px;
     background: #fff;
-    border-bottom: 1px solid #ddd;
+    border-bottom: none;
 }
 
 .drawer-settings {
@@ -214,7 +280,7 @@ body {
     justify-content: center;
     padding: 0 30px;
     background: #fff;
-    border-top: 1px solid #ddd;
+    border-top: none;
     gap: 0px;
     align-content: space-evenly;
 }
