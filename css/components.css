@@ -350,6 +350,27 @@ body {
   color: var(--color-text);
 }
 
+.sub-drawer {
+  position: absolute;
+  top: 0;
+  right: -100%;        /* Fully hidden */
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg);
+  padding: 1rem;
+
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Show instantly when menu is open AND subdrawer is targeted */
+#menuToggle:checked ~ .mobile-drawer #subdrawer:target {
+  right: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* =========================
    Toggle States (CSS-only)
    ========================= */
