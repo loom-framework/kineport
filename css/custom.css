@@ -11,44 +11,4 @@ Created: 2008
   font-weight: 800;
 }
 
-.section-fullwidth {
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  width: 100vw;
-
-  background: var(--bg, #eee);
-  padding: var(--spacing) 0;
-}
-
-.section-fullwidth > * {
-  width: min(1200px, 94%);
-  margin: 0 auto;
-  padding: var(--spacing);
-}
-
-
-
-
-
-
-.section-breakout {
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  width: 100vw;
-
-  background: var(--bg, #ddd);
-  padding: var(--spacing) 0;
-}
-
-/* optional: if you want inner content to be full width */
-.section-breakout .wide-content {
-  width: 100%;
-  padding: var(--spacing);
-}
 
