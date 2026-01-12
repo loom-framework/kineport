@@ -8,15 +8,20 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const normalize = path =>
-    path.replace(/\/+$/, '').toLowerCase() || '/';
+  // Normalize paths so /about, /about/, /ABOUT all match
+  const normalize = path => {
+    path = path.toLowerCase().replace(/\/+$/, '');
+    if (path === '') path = '/';
+    if (path === '/index.html') path = '/';
+    return path;
+  };
 
   const current = normalize(window.location.pathname);
 
   document.querySelectorAll('.desktop-nav a[href]').forEach(link => {
     const raw = link.getAttribute('href');
 
-    // Skip placeholder links
+    // Skip placeholder links like "#"
     if (!raw || raw === '#') return;
 
     const linkPath = normalize(new URL(link.href).pathname);
@@ -27,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
 
 
 
