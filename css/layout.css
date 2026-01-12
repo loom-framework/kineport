@@ -37,7 +37,7 @@ Created: 2008
     .grid-3 {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+ }   
     
 @media (min-width: 700px) {
     .grid-4 {
@@ -51,7 +51,7 @@ Created: 2008
 }
 
     
-    
+    /* fullwidth bg row */
     .section-fullwidth {
   position: relative;
   left: 50%;
@@ -60,7 +60,7 @@ Created: 2008
   margin-right: -50vw;
   width: 100vw;
 
-  background: var(--bg, #eee);
+  background: red;
   padding: var(--spacing) 0;
 }
 
@@ -74,7 +74,7 @@ Created: 2008
 
 
 
-
+/* fullwidth row */
 .section-breakout {
   position: relative;
   left: 50%;
@@ -83,7 +83,7 @@ Created: 2008
   margin-right: -50vw;
   width: 100vw;
 
-  background: var(--bg, #ddd);
+  background: green;
   padding: var(--spacing) 0;
 }
 
@@ -112,6 +112,6 @@ Created: 2008
     padding: var(--spacing);
     border-radius: var(--radius);
 }
-}
+
 
 
