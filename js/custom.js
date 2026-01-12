@@ -1,62 +1,25 @@
-// Universal print button
-document.addEventListener('click', function (e) {
-    if (e.target?.id === 'print-page') {
+// -----------------------------------------------------------------------------
+// Description: Application bootstrap and initialization logic.
+// Author: Janis Bedeicis
+// Github: https://github.com/loom-framework
+// E-mail: loom.framework@gmail.com
+// Created: 2008
+// -----------------------------------------------------------------------------
 
-        // Close drawer before print
-        const drawer = document.querySelector('.mobile-drawer');
-        if (drawer) drawer.classList.remove('open');
 
-        // Allow layout to update before printing
-        setTimeout(() => window.print(), 50);
+  const normalize = path =>
+    path.replace(/\/+$/, '').toLowerCase() || '/';
+
+  const current = normalize(window.location.pathname);
+
+  document.querySelectorAll('.desktop-nav a').forEach(link => {
+    const linkPath = normalize(new URL(link.href).pathname);
+
+    if (linkPath === current) {
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
     }
-});
+  });
 
-// Ensure drawer is closed before print
-window.addEventListener('beforeprint', () => {
-    const drawer = document.querySelector('.mobile-drawer');
-    if (drawer) drawer.classList.remove('open');
-});
-
-// logic 
-
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js").then((reg) => {
-
-        // If a new SW is already waiting
-        if (reg.waiting) {
-            showUpdateBanner();
-        }
-
-        // Detect new SW installation
-        reg.addEventListener("updatefound", () => {
-            const newSW = reg.installing;
-            newSW.addEventListener("statechange", () => {
-                if (newSW.state === "installed" && navigator.serviceWorker.controller) {
-                    showUpdateBanner();
-                }
-            });
-        });
-    });
-}
-
-// Show in-page update banner
-function showUpdateBanner() {
-    const banner = document.getElementById("update-banner");
-    banner.hidden = false;
-    banner.classList.add("update-banner--visible");
-}
-
-// When user clicks "Update", activate new SW
-document.getElementById("update-refresh-btn").addEventListener("click", async () => {
-    const reg = await navigator.serviceWorker.getRegistration();
-    if (reg.waiting) {
-        reg.waiting.postMessage({ action: "skipWaiting" });
-    }
-});
-
-// Reload when new SW takes control
-navigator.serviceWorker.addEventListener("controllerchange", () => {
-    window.location.reload();
-});
 
 

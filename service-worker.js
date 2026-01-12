@@ -1,6 +1,14 @@
+// -----------------------------------------------------------------------------
+// Description: Application bootstrap and initialization logic.
+// Author: Janis Bedeicis
+// Github: https://github.com/loom-framework
+// E-mail: loom.framework@gmail.com
+// Created: 2008
+// -----------------------------------------------------------------------------
+
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v6"; // bump this for every release
-const CACHE_NAME = `my-w3c-app-cache-${SW_VERSION}`;
+const SW_VERSION = "v44"; 
+const CACHE_NAME = `kineport-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
     "/",
@@ -25,14 +33,17 @@ const PRECACHE_URLS = [
     "/components/footer.html"
 ];
 
-// --- Install ---------------------------------------------------------------
+// --- Install: precache and activate immediately -----------------------------
 self.addEventListener("install", (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
     );
+
+    // Activate new SW immediately
+    self.skipWaiting();
 });
 
-// --- Activate: cleanup old caches -----------------------------------------
+// --- Activate: cleanup old caches and take control --------------------------
 self.addEventListener("activate", (event) => {
     event.waitUntil(
         caches.keys().then((keys) =>
@@ -45,11 +56,22 @@ self.addEventListener("activate", (event) => {
     );
 });
 
-// --- Fetch -----------------------------------------------------------------
+// --- Fetch ------------------------------------------------------------------
 self.addEventListener("fetch", (event) => {
     const req = event.request;
+    const url = new URL(req.url);
 
-    // Navigation: network-first
+    // Ignore non-HTTP(S) schemes (chrome-extension://, file://, data://, blob://)
+    if (!req.url.startsWith("http")) {
+        return;
+    }
+
+    // Ignore cross-origin requests (optional but recommended for clean caches)
+    if (url.origin !== self.location.origin) {
+        return;
+    }
+
+    // Navigation requests: network-first
     if (req.mode === "navigate") {
         event.respondWith(
             fetch(req).catch(() => caches.match("/offline"))
@@ -60,22 +82,28 @@ self.addEventListener("fetch", (event) => {
     // Other GET requests: cache-first
     if (req.method === "GET") {
         event.respondWith(
-            caches.match(req).then(
-                (cached) =>
-                    cached ||
-                    fetch(req).then((res) => {
+            caches.match(req).then((cached) => {
+                if (cached) return cached;
+
+                return fetch(req)
+                    .then((res) => {
+                        // Only cache valid responses
+                        if (!res || res.status !== 200 || res.type !== "basic") {
+                            return res;
+                        }
+
                         const copy = res.clone();
-                        caches.open(CACHE_NAME).then((c) => c.put(req, copy));
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(req, copy);
+                        });
+
                         return res;
                     })
-            )
+                    .catch(() => {
+                        // Optional: fallback for failed GETs
+                        return caches.match("/offline");
+                    });
+            })
         );
-    }
-});
-
-// --- Messaging: only skipWaiting for in-page update banner -----------------
-self.addEventListener("message", (event) => {
-    if (event.data && event.data.action === "skipWaiting") {
-        self.skipWaiting();
     }
 });

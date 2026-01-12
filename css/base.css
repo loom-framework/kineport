@@ -1,3 +1,12 @@
+/*
+Description: Core layout and responsive styling.
+Author: Janis Bedeicis
+Github: https://github.com/loom-framework
+E-mail: loom.framework@gmail.com
+Created: 2008
+*/
+
+
 * {
     box-sizing: border-box;
 }
@@ -18,12 +27,31 @@ body {
     line-height: var(--line-height);
     color: var(--color-text);
     background: var(--color-bg);
+    /* 1. Force standard thickness (Regular) */
+    font-weight: 400; 
+    
+    /* 2. Force standard width (DO NOT condense body text, it's hard to read) */
+    font-stretch: 100%; 
+    
+    /* 3. Improves kerning/sharpness for text */
+    text-rendering: optimizeLegibility;
 }
 .container {
     width: min(1200px, 94%);
     margin: 0 auto;
-    padding: var(--spacing) 0;
+    padding: var(--spacing);
 }
+
+.container a {
+  font-weight: 600;
+  color: green;
+  text-decoration: none;
+}
+
+.container a:hover {
+  opacity: 50%; 
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -39,3 +67,124 @@ button {
     outline: 3px solid color-mix(in srgb, var(--color-primary) 60%, transparent);
     outline-offset: 3px;
 }
+
+/* Links verify clean */
+a {
+  text-decoration: none;
+ 
+ 
+    
+}
+a:visited {
+  color: inherit;
+}
+
+/* Buttons */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Remove focus glow */
+a:focus,
+button:focus,
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Mobile tap highlight */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+
+
+
+
+/*  Print layout  --------------   */
+@page {
+    size: A4 portrait;
+    margin: 1.5cm;
+}
+
+@media print {
+
+    /* Always force light theme when printing */
+    html {
+        --color-bg: #ffffff !important;
+        --color-text: #1f2937 !important;
+        --color-surface: #ffffff !important;
+        --color-primary: #0059ff !important;
+
+        color-scheme: light !important;
+    }
+
+    body {
+        background: var(--color-bg) !important;
+        color: var(--color-text) !important;
+    }
+
+    /* Preserve colors */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Hide UI elements */
+    .menu-overlay,
+    .site-header,
+    .controls,
+    .mobile-drawer,
+    #menu-toggle,
+    #theme-toggle,
+    #print-page {
+        display: none !important;
+    }
+
+    /* Force desktop width */
+    html,
+    body,
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Force desktop breakpoints */
+    body {
+        background: white !important;
+    }
+
+    /* Optional: force desktop breakpoint */
+    html {
+        min-width: 700px !important;
+    }
+
+    /* Prevent content from splitting awkwardly */
+    * {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
