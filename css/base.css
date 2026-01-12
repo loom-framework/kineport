@@ -106,9 +106,7 @@ a {
     text-decoration: none;
 }
 a:visited {
-    color: currentColor;
-    text-decoration: inherit;
-    font-weight: inherit;
+    color: none;
 }
 
 /* Buttons */
