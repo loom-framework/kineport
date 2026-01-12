@@ -7,4 +7,4 @@
 // -----------------------------------------------------------------------------
 
 
-console.log('This is loaded');
+console.log('Kineport is loaded');
