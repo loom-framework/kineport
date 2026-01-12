@@ -6,9 +6,8 @@ E-mail: loom.framework@gmail.com
 Created: 2008
 */
 
-.desktop-nav a.active,
-.desktop-nav a[aria-current="page"] {
+.site-header .desktop-nav a.active,
+.site-header .desktop-nav a[aria-current="page"] {
   font-weight: 800;
 }
-
 
