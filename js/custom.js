@@ -8,7 +8,6 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Normalize paths so /about, /about/, /ABOUT all match
   const normalize = path => {
     path = path.toLowerCase().replace(/\/+$/, '');
     if (path === '') path = '/';
@@ -20,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.desktop-nav a[href]').forEach(link => {
     const raw = link.getAttribute('href');
-
-    // Skip placeholder links like "#"
     if (!raw || raw === '#') return;
 
     const linkPath = normalize(new URL(link.href).pathname);
@@ -32,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
 
 
 
