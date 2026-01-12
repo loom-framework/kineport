@@ -7,12 +7,18 @@
 // -----------------------------------------------------------------------------
 
 
+document.addEventListener('DOMContentLoaded', () => {
   const normalize = path =>
     path.replace(/\/+$/, '').toLowerCase() || '/';
 
   const current = normalize(window.location.pathname);
 
-  document.querySelectorAll('.desktop-nav a').forEach(link => {
+  document.querySelectorAll('.desktop-nav a[href]').forEach(link => {
+    const raw = link.getAttribute('href');
+
+    // Skip placeholder links
+    if (!raw || raw === '#') return;
+
     const linkPath = normalize(new URL(link.href).pathname);
 
     if (linkPath === current) {
@@ -20,6 +26,8 @@
       link.setAttribute('aria-current', 'page');
     }
   });
+});
+
 
 
 
