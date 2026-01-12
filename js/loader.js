@@ -68,30 +68,30 @@
     window.addEventListener('load', async function () {
       try {
         const reg = await navigator.serviceWorker.register('/service-worker.js');
-        console.log('SW registered. scope:', reg.scope);
+        console.log('Kineport registered. scope:', reg.scope);
 
-        if (reg.installing) console.log('SW installing');
-        else if (reg.waiting) console.log('SW installed & waiting');
-        else if (reg.active) console.log('SW active');
+        if (reg.installing) console.log('Kineport installing');
+        else if (reg.waiting) console.log('Kineport installed & waiting');
+        else if (reg.active) console.log('Kineport active');
 
         reg.addEventListener('updatefound', function () {
           const newWorker = reg.installing;
-          console.log('SW update found, state:', newWorker && newWorker.state);
+          console.log('Kineport update found, state:', newWorker && newWorker.state);
           if (newWorker) {
             newWorker.addEventListener('statechange', function () {
-              console.log('New SW state:', newWorker.state);
+              console.log('New Kineport state:', newWorker.state);
             });
           }
         });
 
         if (navigator.serviceWorker.controller) {
-          console.log('This page is currently controlled by a service worker.');
+          console.log('This page is currently controlled by Kineport.');
         } else {
-          console.log('This page is not yet controlled by a service worker. Reload after install to be controlled.');
+          console.log('This page is not yet controlled by a Kineport. Reload after install to be controlled.');
         }
 
       } catch (err) {
-        console.warn('SW registration failed:', err);
+        console.warn('Kineport registration failed:', err);
       }
     });
   }
