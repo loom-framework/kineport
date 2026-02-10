@@ -310,7 +310,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-evenly;
     padding: 0 16px;
     background: var(--color-bg);
     border-top: none;
@@ -323,9 +323,15 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: center;
 }
 
-
+.mobile-drawer .drawer-grid-2 a {
+    font-size: 12px;
+}
 
 
 #menuToggle {
@@ -365,7 +371,21 @@ body {
 }
 
 /* Show instantly when menu is open AND subdrawer is targeted */
-#menuToggle:checked ~ .mobile-drawer #subdrawer:target {
+#menuToggle:checked ~ .mobile-drawer #subdrawer1:target {
+  right: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Show instantly when menu is open AND subdrawer is targeted */
+#menuToggle:checked ~ .mobile-drawer #subdrawer2:target {
+  right: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Show instantly when menu is open AND subdrawer is targeted */
+#menuToggle:checked ~ .mobile-drawer #subdrawer3:target {
   right: 0;
   opacity: 1;
   pointer-events: auto;

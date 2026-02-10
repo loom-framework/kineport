@@ -37,7 +37,7 @@ Created: 2008
     .grid-3 {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+ }   
     
 @media (min-width: 700px) {
     .grid-4 {
@@ -50,6 +50,53 @@ Created: 2008
     }
 }
 
+    
+    /* fullwidth bg row */
+    .section-fullwidth {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  background: red;
+  padding: var(--spacing) 0;
+}
+
+.section-fullwidth > * {
+  width: min(1200px, 94%);
+  margin: 0 auto;
+  padding: var(--spacing);
+}
+
+
+
+
+
+/* fullwidth row */
+.section-breakout {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  background: green;
+  padding: var(--spacing) 0;
+}
+
+/* optional: if you want inner content to be full width */
+.section-breakout .wide-content {
+  width: 100%;
+  padding: var(--spacing);
+}
+
+    
+    
+    
+    
 .hero {
     padding: var(--spacing);
     background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent);
@@ -65,39 +112,6 @@ Created: 2008
     padding: var(--spacing);
     border-radius: var(--radius);
 }
-}
-
-.site-footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    background: var(--color-bg);
-    border-top: none;
-}
-
-.site-footer a {
-    font-weight: inherit;
-  color: inherit;
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  opacity: 50%; 
-}
 
 
-.site-info {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+

@@ -18,11 +18,21 @@
   </header>
 
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="#subdrawer">About</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a href="#subdrawer1">Categories</a></li>
+    <li><a href="#subdrawer2">Projects</a></li>
+    <li><a href="#subdrawer3">Catalog</a></li>
   </ul>
-  <div id="subdrawer" class="sub-drawer">
+  
+  <div id="subdrawer1" class="sub-drawer">
+    <a href="#" class="back">Back</a>
+    <ul>
+      <li><a href="/about/team">Team</a></li>
+      <li><a href="/about/history">History</a></li>
+      <li><a href="/about/careers">Careers</a></li>
+    </ul>
+  </div>
+  
+  <div id="subdrawer2" class="sub-drawer">
     <a href="#" class="back">Back</a>
     <ul>
       <li><a href="/about/team">Team</a></li>
@@ -31,16 +41,25 @@
     </ul>
   </div>
 
-  <div class="drawer-grid-2">
-    <section>
-      <h4>Column A</h4>
-      <p>Left column content.</p>
-    </section>
-    <section>
-      <h4>Column B</h4>
-      <p>Right column content.</p>
-    </section>
+  <div id="subdrawer3" class="sub-drawer">
+    <a href="#" class="back">Back</a>
+    <ul>
+      <li><a href="/about/team">Team</a></li>
+      <li><a href="/about/history">History</a></li>
+      <li><a href="/about/careers">Careers</a></li>
+    </ul>
   </div>
+  
+ <!-- <div class="drawer-grid-2">
+    <section>
+      
+      <small><a href="/">Location</a></small>
+    </section>
+    <section>
+      
+      <small><a href="/">Temperature</a></small>
+    </section>
+  </div>-->
 
   <section class="drawer-settings">
     <button id="enable-notifications" class="set_btn">Enable Notifications</button>
@@ -48,6 +67,8 @@
   </section>
 
   <footer class="drawer-footer">
+    
+     <div id="api-result">Waiting for API...</div>
     <div class="condensed-text">Enable dark mode</div>
     <label class="theme-toggle">
       <input type="checkbox" id="theme-toggle" aria-pressed="false" />

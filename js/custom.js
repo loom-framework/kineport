@@ -7,19 +7,17 @@
 // -----------------------------------------------------------------------------
 
 
-  const normalize = path =>
-    path.replace(/\/+$/, '').toLowerCase() || '/';
+async function testAPI() {
+    const res = await fetch("https://fancy-sound-b19d.loom-framework.workers.dev/");
+    const data = await res.json();
+    document.getElementById("api-result").textContent = data.message;
+}
 
-  const current = normalize(window.location.pathname);
+document.addEventListener("DOMContentLoaded", testAPI);
 
-  document.querySelectorAll('.desktop-nav a').forEach(link => {
-    const linkPath = normalize(new URL(link.href).pathname);
 
-    if (linkPath === current) {
-      link.classList.add('active');
-      link.setAttribute('aria-current', 'page');
-    }
-  });
+
+
 
 
 
