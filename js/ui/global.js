@@ -156,3 +156,42 @@ if ("serviceWorker" in navigator) {
     });
 }
 
+// ------------------------------
+// UI Helpers
+// ------------------------------
+
+import { login, register, loadUser } from "./auth.js";
+import { testAPI } from "./api.js";
+
+// Example: test API on homepage
+export async function initHomePage() {
+  const data = await testAPI();
+  document.getElementById("api-result").textContent = data.message;
+}
+
+// Example: login page
+export async function initLoginPage() {
+  document.getElementById("login-btn").onclick = async () => {
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    const result = await login(email, password);
+    console.log(result);
+  };
+}
+
+// Example: dashboard
+export async function initDashboard() {
+  const user = await loadUser();
+  console.log("User:", user);
+}
+
+
+
+
+
+
+
+
+
+
