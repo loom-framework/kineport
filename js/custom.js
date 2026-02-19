@@ -8,3 +8,24 @@
 
 
 
+async function updateApiStatus() {
+  const el = document.getElementById("api-result");
+  if (!el) return;
+
+  el.textContent = "Connecting...";
+
+  try {
+    const status = await testAPI(); // GET /test
+
+    let output = `Front: ${status.front} | DB: ${status.db}`;
+    if (status.error) {
+      output += ` | Error: ${status.error}`;
+    }
+
+    el.textContent = output;
+  } catch (err) {
+    el.textContent = `Front: ERROR | DB: UNKNOWN | Error: ${err.message}`;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", updateApiStatus);
