@@ -12,20 +12,50 @@ async function updateApiStatus() {
   const el = document.getElementById("api-result");
   if (!el) return;
 
-  el.textContent = "Connecting...";
+  el.innerHTML = "Connecting...";
 
   try {
     const status = await testAPI(); // GET /test
 
-    let output = `Front: ${status.front} | DB: ${status.db}`;
-    if (status.error) {
-      output += ` | Error: ${status.error}`;
+    // Build header
+    let html = `
+      <div><strong>Front:</strong> ${status.front}</div>
+      <div><strong>Database:</strong> ${status.db}</div>
+      <hr>
+      <div><strong>API Endpoints:</strong></div>
+      <ul>
+    `;
+
+    // Loop through all endpoints
+    for (const ep of status.endpoints) {
+      let epStatus = "UNKNOWN";
+
+      try {
+        const res = await apiGet(ep.path);
+        epStatus = res ? "OK" : "FAIL";
+      } catch (err) {
+        epStatus = "ERROR";
+      }
+
+      html += `
+        <li>
+          ${epStatus === "OK" ? "✓" : "✗"} 
+          <strong>${ep.name}</strong> — <code>${ep.path}</code>
+        </li>
+      `;
     }
 
-    el.textContent = output;
+    html += "</ul>";
+
+    el.innerHTML = html;
   } catch (err) {
-    el.textContent = `Front: ERROR | DB: UNKNOWN | Error: ${err.message}`;
+    el.innerHTML = `
+      <div><strong>Front:</strong> ERROR</div>
+      <div><strong>Database:</strong> UNKNOWN</div>
+      <div><strong>Error:</strong> ${err.message}</div>
+    `;
   }
 }
 
 document.addEventListener("DOMContentLoaded", updateApiStatus);
+
