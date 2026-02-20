@@ -17,7 +17,6 @@ async function updateApiStatus() {
   try {
     const status = await testAPI(); // GET /test
 
-    // Build header
     let html = `
       <div><strong>Front:</strong> ${status.front}</div>
       <div><strong>Database:</strong> ${status.db}</div>
@@ -26,7 +25,6 @@ async function updateApiStatus() {
       <ul>
     `;
 
-    // Loop through all endpoints
     for (const ep of status.endpoints) {
       let epStatus = "UNKNOWN";
 
@@ -46,8 +44,8 @@ async function updateApiStatus() {
     }
 
     html += "</ul>";
-
     el.innerHTML = html;
+
   } catch (err) {
     el.innerHTML = `
       <div><strong>Front:</strong> ERROR</div>
