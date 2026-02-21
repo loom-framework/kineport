@@ -8,6 +8,8 @@
 
 
 
+import { testAPI, apiGet } from "../api.js";
+
 async function updateApiStatus() {
   const el = document.getElementById("api-result");
   if (!el) return;
@@ -15,7 +17,7 @@ async function updateApiStatus() {
   el.innerHTML = "Connecting...";
 
   try {
-    const status = await testAPI(); // GET /test
+    const status = await testAPI();
 
     let html = `
       <div><strong>Front:</strong> ${status.front}</div>
