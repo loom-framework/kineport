@@ -22,8 +22,6 @@ Created: 2008
     display: flex;
     flex-direction: column;
     gap: 0px;
-
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 /* Section header */
