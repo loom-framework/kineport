@@ -15,8 +15,8 @@ const observer = new MutationObserver(() => {
     const el = document.getElementById("api-result");
     if (!el) return;
 
-    observer.disconnect(); // Stop watching once found
-    updateApiStatus();     // Now run the dashboard
+    observer.disconnect();
+    updateApiStatus();
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
@@ -31,11 +31,12 @@ async function updateApiStatus() {
         const status = await testAPI();
 
         let html = `
-            <div><strong>Front:</strong> ${status.front}</div>
-            <div><strong>Database:</strong> ${status.db}</div>
-            <hr>
-            <div><strong>API Endpoints:</strong></div>
-            <ul>
+            <div style="font-size:14px; line-height:1.2;">
+                <div><strong>Front:</strong> ${status.front}</div>
+                <div><strong>Database:</strong> ${status.db}</div>
+                <hr style="margin:6px 0;">
+                <div><strong>API Endpoints:</strong></div>
+                <ul style="padding-left:14px; margin:6px 0;">
         `;
 
         for (const ep of status.endpoints) {
@@ -49,24 +50,32 @@ async function updateApiStatus() {
             }
 
             html += `
-                <li>
-                    ${epStatus === "OK" ? "✓" : "✗"}
-                    <strong>${ep.name}</strong> — <code>${ep.path}</code>
+                <li style="margin:2px 0; display:flex; gap:6px; align-items:center;">
+                    <span style="width:16px;">${epStatus === "OK" ? "✓" : "✗"}</span>
+                    <span>${ep.name}</span>
+                    <code style="opacity:0.6; margin-left:auto;">${ep.path}</code>
                 </li>
             `;
         }
 
-        html += "</ul>";
+        html += `
+                </ul>
+            </div>
+        `;
+
         el.innerHTML = html;
 
     } catch (err) {
         el.innerHTML = `
-            <div><strong>Front:</strong> ERROR</div>
-            <div><strong>Database:</strong> UNKNOWN</div>
-            <div><strong>Error:</strong> ${err.message}</div>
+            <div style="font-size:14px; line-height:1.2;">
+                <div><strong>Front:</strong> ERROR</div>
+                <div><strong>Database:</strong> UNKNOWN</div>
+                <div><strong>Error:</strong> ${err.message}</div>
+            </div>
         `;
     }
 }
+
 
 
 
