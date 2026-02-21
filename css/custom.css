@@ -6,16 +6,18 @@ E-mail: loom.framework@gmail.com
 Created: 2008
 */
 
-/* Compact API dashboard container */
 #api-result {
-    font-size: 13px;
-    line-height: 1.2;
-    max-height: 260px;          /* restrict height */
-    overflow-y: auto;           /* scroll if too tall */
-    padding: 6px 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.1;
+    padding: 4px 6px;
     background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Title spacing */
+#api-result > div {
+    margin: 2px 0;
 }
 
 /* Compact list */
@@ -25,21 +27,22 @@ Created: 2008
 }
 
 #api-result li {
-    margin: 2px 0;
+    margin: 1px 0;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 /* Status icon column */
 #api-result li span:first-child {
-    width: 16px;
+    width: 14px;
     text-align: center;
+    font-size: 12px;
 }
 
 /* Endpoint path aligned right */
 #api-result code {
     margin-left: auto;
     opacity: 0.6;
-    font-size: 12px;
+    font-size: 11px;
 }
