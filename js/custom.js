@@ -8,7 +8,7 @@
 
 
 
-import { testAPI, apiGet } from "../api.js";
+import { testAPI, apiGet } from "./api.js";
 
 async function updateApiStatus() {
   const el = document.getElementById("api-result");
