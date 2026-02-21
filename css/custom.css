@@ -6,47 +6,51 @@ E-mail: loom.framework@gmail.com
 Created: 2008
 */
 
-/* Fixed-size compact dashboard */
+/* API Dashboard Container */
 #api-result {
     width: 100%;
-    max-width: 420px;          /* keeps it visually contained */
-    min-height: 160px;         /* prevents collapsing */
-    max-height: 220px;         /* fixed visual block */
-    padding: 10px 12px;
-    background: #f7f7f7;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    max-width: 420px;
+    min-height: 180px;
+    max-height: 180px;
+
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
 
     font-size: 13px;
-    line-height: 1.15;
+    line-height: 1.25;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
-/* Section titles */
-#api-result > div strong {
-    font-size: 13px;
+/* Section header */
+#api-result .section-title {
+    font-weight: 600;
+    margin-bottom: 2px;
 }
 
-/* List compactness */
+/* Compact list */
 #api-result ul {
-    margin: 4px 0 0 0;
+    margin: 0;
     padding-left: 14px;
 }
 
 #api-result li {
-    margin: 1px 0;
+    margin: 2px 0;
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-/* Status icon column */
-#api-result li span:first-child {
-    width: 14px;
+/* Status icon */
+#api-result li .status-icon {
+    width: 16px;
     text-align: center;
     font-size: 12px;
 }
