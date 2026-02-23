@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v88"; 
+const SW_VERSION = "v89"; 
 const CACHE_NAME = `kineport-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -107,3 +107,19 @@ self.addEventListener("fetch", (event) => {
         );
     }
 });
+
+// -----------------------------------------------------------------------------
+
+self.addEventListener("push", (event) => {
+    const data = event.data.json();
+
+    event.waitUntil(
+        self.registration.showNotification(data.title, {
+            body: data.body,
+            icon: "/assets/icons/android-chrome-192x192.png"
+        })
+    );
+});
+
+
+
