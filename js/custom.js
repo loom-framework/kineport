@@ -72,6 +72,47 @@ async function updateApiStatus() {
 }
 
 
+// -----------------------------------------------------------------------------
+
+
+async function registerPushSubscription() {
+    if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
+        console.warn("Push not supported in this browser.");
+        return;
+    }
+
+    const registration = await navigator.serviceWorker.register("/service-worker.js");
+
+    const subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: "BGqm1N4BWw7Npp1xWPEGBegl2ABSh1101CFwOqPecYCMmo2OAlJiecR74tfajuL0DcIdVAy113AQD_OP6qeBZos"
+    });
+
+    await fetch("/api/user/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(subscription)
+    });
+}
+
+// Auto-run if permission already granted
+document.addEventListener("DOMContentLoaded", () => {
+    if (Notification.permission === "granted") {
+        registerPushSubscription().catch(console.error);
+    }
+});
+
+// Also run after your existing script requests permission
+document.addEventListener("click", () => {
+    setTimeout(() => {
+        if (Notification.permission === "granted") {
+            registerPushSubscription().catch(console.error);
+        }
+    }, 300);
+});
+
+
+
 
 
 
