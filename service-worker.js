@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v93"; 
+const SW_VERSION = "v94"; 
 const CACHE_NAME = `kineport-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -30,7 +30,8 @@ const PRECACHE_URLS = [
     "/js/install.js",
     "/components/header.html",
     "/components/nav.html",
-    "/components/footer.html"
+    "/components/footer.html",
+    "/components/cart.html",
 ];
 
 // --- Install: precache and activate immediately -----------------------------
