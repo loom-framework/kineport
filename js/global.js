@@ -24,7 +24,21 @@ if (toggle && button) {
   });
 }
 
+/* ======================
+       CART
+    ====================== */
 
+const cartopen = document.getElementById("cartswitch");
+const switcher = document.querySelector(".cart-switch");
+
+if (cartopen && switcher) {
+  cartopen.addEventListener("change", () => {
+    switcher.setAttribute(
+      "aria-expanded",
+      cartopen.checked ? "true" : "false"
+    );
+  });
+}
 
 
 
