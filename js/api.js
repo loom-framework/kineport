@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 
-const API_BASE = "https://fancy-sound-b19d.loom-framework.workers.dev";
+const API_BASE = "#";
 
 // Helper for GET requests
 export async function apiGet(path, token) {
