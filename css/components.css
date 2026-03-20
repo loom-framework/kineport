@@ -370,22 +370,10 @@ body {
   pointer-events: none;
 }
 
-/* Show instantly when menu is open AND subdrawer is targeted */
-#menuToggle:checked ~ .mobile-drawer #subdrawer1:target {
-  right: 0;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Show instantly when menu is open AND subdrawer is targeted */
-#menuToggle:checked ~ .mobile-drawer #subdrawer2:target {
-  right: 0;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Show instantly when menu is open AND subdrawer is targeted */
-#menuToggle:checked ~ .mobile-drawer #subdrawer3:target {
+/* Show drawer when menu is open AND its checkbox is checked */
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer1:checked ~ #subdrawer1,
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer2:checked ~ #subdrawer2,
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer3:checked ~ #subdrawer3 {
   right: 0;
   opacity: 1;
   pointer-events: auto;

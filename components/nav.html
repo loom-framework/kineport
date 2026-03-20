@@ -17,38 +17,43 @@
     </label>
   </header>
 
+<input type="checkbox" id="toggle-subdrawer1" hidden>
+<input type="checkbox" id="toggle-subdrawer2" hidden>
+<input type="checkbox" id="toggle-subdrawer3" hidden>
+  
   <ul>
-    <li><a href="#subdrawer1">Categories</a></li>
-    <li><a href="#subdrawer2">Projects</a></li>
-    <li><a href="#subdrawer3">Catalog</a></li>
-  </ul>
+  <li><label for="toggle-subdrawer1">Categories</label></li>
+  <li><label for="toggle-subdrawer2">Projects</label></li>
+  <li><label for="toggle-subdrawer3">Catalog</label></li>
+</ul>
+
   
   <div id="subdrawer1" class="sub-drawer">
-    <a href="#" class="back">Back</a>
-    <ul>
-      <li><a href="/about/team">Team</a></li>
-      <li><a href="/about/history">History</a></li>
-      <li><a href="/about/careers">Careers</a></li>
-    </ul>
-  </div>
-  
-  <div id="subdrawer2" class="sub-drawer">
-    <a href="#" class="back">Back</a>
-    <ul>
-      <li><a href="/about/team">Team</a></li>
-      <li><a href="/about/history">History</a></li>
-      <li><a href="/about/careers">Careers</a></li>
-    </ul>
-  </div>
+  <label for="toggle-subdrawer1" class="back">Back</label>
+  <ul>
+    <li><a href="/about/team">Team</a></li>
+    <li><a href="/about/history">History</a></li>
+    <li><a href="/about/careers">Careers</a></li>
+  </ul>
+</div>
 
-  <div id="subdrawer3" class="sub-drawer">
-    <a href="#" class="back">Back</a>
-    <ul>
-      <li><a href="/about/team">Team</a></li>
-      <li><a href="/about/history">History</a></li>
-      <li><a href="/about/careers">Careers</a></li>
-    </ul>
-  </div>
+<div id="subdrawer2" class="sub-drawer">
+  <label for="toggle-subdrawer2" class="back">Back</label>
+  <ul>
+    <li><a href="/about/team">Team</a></li>
+    <li><a href="/about/history">History</a></li>
+    <li><a href="/about/careers">Careers</a></li>
+  </ul>
+</div>
+
+<div id="subdrawer3" class="sub-drawer">
+  <label for="toggle-subdrawer3" class="back">Back</label>
+  <ul>
+    <li><a href="/about/team">Team</a></li>
+    <li><a href="/about/history">History</a></li>
+    <li><a href="/about/careers">Careers</a></li>
+  </ul>
+</div>
   
    <div id="api-result"></div>
   
