@@ -212,6 +212,7 @@ body {
    ========================= */
 
 .cart-switch {
+  margin-left: 15px;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
@@ -474,6 +475,7 @@ body {
 
   .desktop-nav {
     display: flex;
+    margin-left: auto;
   }
 
 }
