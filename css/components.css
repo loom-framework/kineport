@@ -215,11 +215,14 @@ body {
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 22px;
-  height: 16px;
+  width: 32px;
+  height: 40px;
   cursor: pointer;
   box-sizing: border-box;
+  background: url("../assets/icons/cart/shopping_cart_24dp_E3E3E3_FILL0_wght200_GRAD0_opsz24.svg") no-repeat center / contain;
 }
+
+
 
 
 .cart-btn {
