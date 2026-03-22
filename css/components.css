@@ -470,6 +470,7 @@ ul li > label[for^="toggle-subdrawer"] {
 /* Hover effect like a real link */
 ul li > label[for^="toggle-subdrawer"]:hover {
   opacity: 50%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 
@@ -483,6 +484,7 @@ ul li > label[for^="toggle-subdrawer"]:hover {
 
 .sub-drawer .back:hover {
   opacity: 50%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 
