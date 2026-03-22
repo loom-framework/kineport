@@ -220,7 +220,9 @@ body {
   height: 40px;
   cursor: pointer;
   box-sizing: border-box;
-  background: url("../assets/icons/cart/shopping_cart_24dp_E3E3E3_FILL0_wght200_GRAD0_opsz24.svg") no-repeat center / contain;
+  background-color: var(--color-text); /* icon color */
+  mask: url("../assets/icons/cart/shopping_cart_24dp_E3E3E3_FILL0_wght200_GRAD0_opsz24.svg") no-repeat center;
+  mask-size: contain;
 }
 
 
@@ -418,6 +420,7 @@ body {
   padding-top: var(--header-height);
   list-style: none;
   margin-top: 32px;
+  pointer-events: auto;
 }
 
 .mobile-drawer li {
@@ -441,7 +444,7 @@ body {
 
   z-index: 9999;
   opacity: 0;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 /* Show drawer when menu is open AND its checkbox is checked */
@@ -452,6 +455,38 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
+
+
+
+/* All drawer-opening labels */
+ul li > label[for^="toggle-subdrawer"] {
+  cursor: pointer;
+  display: block;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Hover effect like a real link */
+ul li > label[for^="toggle-subdrawer"]:hover {
+  opacity: 50%;
+}
+
+
+.sub-drawer .back {
+  cursor: pointer;
+  display: block;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sub-drawer .back:hover {
+  opacity: 50%;
+}
+
+
+
 
 /* =========================
    Toggle States (CSS-only)
