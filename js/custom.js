@@ -7,17 +7,5 @@
 // -----------------------------------------------------------------------------
 
 
-async function testAPI() {
-    const res = await fetch("https://fancy-sound-b19d.loom-framework.workers.dev/");
-    const data = await res.json();
-    document.getElementById("api-result").textContent = data.message;
-}
-
-document.addEventListener("DOMContentLoaded", testAPI);
-
-
-
-
-
 
 

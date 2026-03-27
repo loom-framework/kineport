@@ -14,7 +14,7 @@ window.addEventListener('beforeinstallprompt', (e)=>{
   deferredPrompt = e;
   // show custom install CTA if desired
   const btn = document.createElement('button');
-  btn.textContent = 'Install as app';
+  btn.textContent = 'Install this app';
   btn.className='set_btn';
   btn.addEventListener('click', async ()=>{
     btn.disabled=true;

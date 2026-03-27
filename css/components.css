@@ -91,6 +91,7 @@ a.btn:visited {
 :root {
   --header-height: 56px;
   --drawer-width: calc(100% - 20% );
+  --cart-width: calc(100% - 20% );
 }
 
 
@@ -127,6 +128,13 @@ body {
   align-items: center;
   gap: 12px;
 }
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 
 .site-title {
   font-size: 18px;
@@ -197,6 +205,74 @@ body {
 .drawer-btn .line-3 {
   display: none;
 }
+
+
+/* =========================
+   cart Navigation
+   ========================= */
+
+.cart-switch {
+  margin-left: 15px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 40px;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: var(--color-text); /* icon color */
+  mask: url("../assets/icons/cart/shopping_cart_24dp_E3E3E3_FILL0_wght200_GRAD0_opsz24.svg") no-repeat center;
+  mask-size: contain;
+}
+
+
+
+
+.cart-btn {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 22px;
+  height: 16px;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* base lines */
+.cart-btn .line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color:var(--color-text);
+  box-sizing: border-box;
+}
+
+/* top-left to bottom-right */
+.cart-btn .line-1 {
+  top: 50%;
+  transform: rotate(45deg);
+  background-color: var(--color-text);
+}
+
+/* top-right to bottom-left */
+.cart-btn .line-2 {
+  top: 50%;
+  transform: rotate(-45deg);
+  background-color: var(--color-text);
+}
+
+/* middle line hidden */
+.cart-btn .line-3 {
+  display: none;
+}
+
+
+
+
+
+
 
 
 
@@ -310,7 +386,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: end;
     padding: 0 16px;
     background: var(--color-bg);
     border-top: none;
@@ -344,6 +420,7 @@ body {
   padding-top: var(--header-height);
   list-style: none;
   margin-top: 32px;
+  pointer-events: auto;
 }
 
 .mobile-drawer li {
@@ -367,29 +444,51 @@ body {
 
   z-index: 9999;
   opacity: 0;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
-/* Show instantly when menu is open AND subdrawer is targeted */
-#menuToggle:checked ~ .mobile-drawer #subdrawer1:target {
+/* Show drawer when menu is open AND its checkbox is checked */
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer1:checked ~ #subdrawer1,
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer2:checked ~ #subdrawer2,
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer3:checked ~ #subdrawer3 {
   right: 0;
   opacity: 1;
   pointer-events: auto;
 }
 
-/* Show instantly when menu is open AND subdrawer is targeted */
-#menuToggle:checked ~ .mobile-drawer #subdrawer2:target {
-  right: 0;
-  opacity: 1;
-  pointer-events: auto;
+
+
+/* All drawer-opening labels */
+ul li > label[for^="toggle-subdrawer"] {
+  cursor: pointer;
+  display: block;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 18px;
 }
 
-/* Show instantly when menu is open AND subdrawer is targeted */
-#menuToggle:checked ~ .mobile-drawer #subdrawer3:target {
-  right: 0;
-  opacity: 1;
-  pointer-events: auto;
+/* Hover effect like a real link */
+ul li > label[for^="toggle-subdrawer"]:hover {
+  opacity: 50%;
+  -webkit-tap-highlight-color: transparent;
 }
+
+
+.sub-drawer .back {
+  cursor: pointer;
+  display: block;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sub-drawer .back:hover {
+  opacity: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+
 
 /* =========================
    Toggle States (CSS-only)
@@ -413,6 +512,7 @@ body {
 
   .desktop-nav {
     display: flex;
+    margin-left: auto;
   }
 
 }
@@ -428,6 +528,181 @@ body {
 }
 
 
+/* =========================
+   cart Toggle
+   ========================= */
 
+
+
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    display: flex;
+    right: calc(var(--cart-width) * 17);
+    flex-direction: column;
+    width: var(--cart-width);
+    max-width: 410px;
+    height: 100%;
+    background:var(--color-bg);
+    transition: transform 0.25s ease;
+    z-index: 1001;
+}
+
+.cart-drawer a:hover {
+  opacity: 50%; 
+}
+
+.site-header a:hover {
+  opacity: 50%; 
+}
+
+.cart-overlay {
+    position: fixed;
+    visibility: visible;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(51, 51, 51, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+}
+
+.cart-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 56px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: var(--color-bg);
+    border-bottom: none;
+}
+
+
+
+
+.cart-settings {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    z-index: 1000;
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    
+    width: 100%;
+    height: fit-content;        /* ensures height matches content exactly */
+    padding: 15px 30px;        /* adjust padding as needed */
+    
+    background: var(--color-bg);
+    border-top: none;
+    
+    align-items: center;       /* centers items in their grid cells */
+    justify-content: center;   /* horizontal centering of items */
+    align-content: start;      /* avoids extra spacing if container grows */
+}
+
+
+
+
+.cart-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 0 16px;
+    background: var(--color-bg);
+    border-top: none;
+}
+
+
+.cart-drawer-grid-2 {
+    position: absolute;
+    bottom: 231px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: center;
+}
+
+.cart-drawer .drawer-grid-2 a {
+    font-size: 12px;
+}
+
+
+#cartswitch {
+  display: none;
+}
+
+
+
+.cart-drawer ul {
+  padding-top: var(--header-height);
+  list-style: none;
+  margin-top: 32px;
+}
+
+.cart-drawer li {
+  margin-bottom: 16px;
+}
+
+.cart-drawer a {
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.sub-drawer {
+  position: absolute;
+  top: 0;
+  right: -100%;        /* Fully hidden */
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg);
+  padding: 1rem;
+
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Show drawer when menu is open AND its checkbox is checked */
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer1:checked ~ #subdrawer1,
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer2:checked ~ #subdrawer2,
+#menuToggle:checked ~ .mobile-drawer #toggle-subdrawer3:checked ~ #subdrawer3 {
+  right: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =========================
+   Toggle States (CSS-only)
+   ========================= */
+#cartswitch:checked ~ .cart-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#cartswitch:checked ~ .cart-drawer {
+  right: 0;
+}
 
 

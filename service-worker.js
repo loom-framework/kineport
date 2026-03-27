@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 // --- Versioning -------------------------------------------------------------
-const SW_VERSION = "v61"; 
+const SW_VERSION = "v99"; 
 const CACHE_NAME = `kineport-app-cache-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -24,13 +24,14 @@ const PRECACHE_URLS = [
     "/css/themes.css",
     "/js/loader.js",
     "/js/main.js",
-    "/js/ui.js",
+    "/js/global.js",
     "/js/storage.js",
     "/js/offline.js",
     "/js/install.js",
     "/components/header.html",
     "/components/nav.html",
-    "/components/footer.html"
+    "/components/footer.html",
+    "/components/cart.html",
 ];
 
 // --- Install: precache and activate immediately -----------------------------
@@ -107,3 +108,19 @@ self.addEventListener("fetch", (event) => {
         );
     }
 });
+
+// -----------------------------------------------------------------------------
+
+self.addEventListener("push", (event) => {
+    const data = event.data.json();
+
+    event.waitUntil(
+        self.registration.showNotification(data.title, {
+            body: data.body,
+            icon: "/assets/icons/android-chrome-192x192.png"
+        })
+    );
+});
+
+
+

@@ -58,6 +58,7 @@
     loadComponent('component-header', '/components/header.html');
     loadComponent('component-nav', '/components/nav.html');
     loadComponent('component-footer', '/components/footer.html');
+    loadComponent('component-cart', '/components/cart.html');
   });
 
 
