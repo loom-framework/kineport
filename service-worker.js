@@ -120,7 +120,7 @@ self.addEventListener("push", (event) => {
             icon: "/assets/icons/android-chrome-192x192.png"
         })
     );
-});
+}); 
 
 
 
