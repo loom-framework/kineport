@@ -268,9 +268,6 @@ project/
 
 Clone the repository:
 
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-cd YOUR-REPOSITORY
-
 Run the project using a local HTTP server.
 
 For example:
